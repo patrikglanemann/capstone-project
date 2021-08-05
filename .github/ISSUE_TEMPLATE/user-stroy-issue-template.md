@@ -7,12 +7,12 @@ assignees: ''
 
 ---
 
-##Value statement
+## Value statement
 
-##Description
+## Description
 
-##Acceptance criteria
+## Acceptance criteria
 
-##Complexity
+## Complexity
 
-##Tasks
+## Tasks
