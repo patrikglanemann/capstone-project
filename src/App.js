@@ -1,5 +1,6 @@
 import "./App.css";
 import Cell from "./Cell.js";
+import NumberInput from "./NumberInput";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -14,11 +15,27 @@ function App() {
         setNumbers(data.board);
       });
   }, []);
+
   function renderCellRow(index) {
     const numbArray = numbers[index].map((number, index) => {
       return <Cell key={index} value={number} />;
     });
     return numbArray;
+  }
+
+  function renderNumberBtns() {
+    const numbBtns = [...Array(9)].map((item, index) => (
+      <NumberInput
+        key={index}
+        onClick={handleNumberInputClick}
+        value={index + 1}
+      />
+    ));
+    return numbBtns;
+  }
+
+  function handleNumberInputClick(value) {
+    console.log(value);
   }
 
   return (
@@ -34,6 +51,7 @@ function App() {
         <div className="Sudoku__row">{renderCellRow(7)}</div>
         <div className="Sudoku__row">{renderCellRow(8)}</div>
       </div>
+      <div className="NumbInputField">{renderNumberBtns()}</div>
     </div>
   );
 }
