@@ -43,12 +43,13 @@ function App() {
   }
 
   function handleCellClick(cellID) {
-    console.log(cellID);
     selectedCell = cellID;
   }
 
   function handleNumberInputClick(value) {
-    console.log(value);
+    let newNumbArr = [...numbers];
+    newNumbArr[selectedCell[0]][selectedCell[1]] = value;
+    setNumbers(newNumbArr);
   }
 
   return (
