@@ -14,14 +14,28 @@ function App() {
     [0, 0, 2, 0, 1, 0, 0, 3, 0],
   ];
 
-  function renderCells() {
-    const numbArray = numbers.map((number, index) => {
+  function renderCells(index) {
+    const numbArray = sampleGrid[index].map((number, index) => {
       return <Cell key={index} value={number} />;
     });
     return numbArray;
   }
 
-  return <div className="App">{renderCells()}</div>;
+  return (
+    <div className="App">
+      <div className="Sudoku__grid">
+        <div className="Sudoku__row">{renderCells(0)}</div>
+        <div className="Sudoku__row">{renderCells(1)}</div>
+        <div className="Sudoku__row">{renderCells(2)}</div>
+        <div className="Sudoku__row">{renderCells(3)}</div>
+        <div className="Sudoku__row">{renderCells(4)}</div>
+        <div className="Sudoku__row">{renderCells(5)}</div>
+        <div className="Sudoku__row">{renderCells(6)}</div>
+        <div className="Sudoku__row">{renderCells(7)}</div>
+        <div className="Sudoku__row">{renderCells(8)}</div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
