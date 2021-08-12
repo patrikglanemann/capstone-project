@@ -14,7 +14,7 @@ function App() {
     [0, 0, 2, 0, 1, 0, 0, 3, 0],
   ];
 
-  function renderCells(index) {
+  function renderCellRow(index) {
     const numbArray = sampleGrid[index].map((number, index) => {
       return <Cell key={index} value={number} />;
     });
@@ -24,15 +24,15 @@ function App() {
   return (
     <div className="App">
       <div className="Sudoku__grid">
-        <div className="Sudoku__row">{renderCells(0)}</div>
-        <div className="Sudoku__row">{renderCells(1)}</div>
-        <div className="Sudoku__row">{renderCells(2)}</div>
-        <div className="Sudoku__row">{renderCells(3)}</div>
-        <div className="Sudoku__row">{renderCells(4)}</div>
-        <div className="Sudoku__row">{renderCells(5)}</div>
-        <div className="Sudoku__row">{renderCells(6)}</div>
-        <div className="Sudoku__row">{renderCells(7)}</div>
-        <div className="Sudoku__row">{renderCells(8)}</div>
+        <div className="Sudoku__row">{renderCellRow(0)}</div>
+        <div className="Sudoku__row">{renderCellRow(1)}</div>
+        <div className="Sudoku__row">{renderCellRow(2)}</div>
+        <div className="Sudoku__row">{renderCellRow(3)}</div>
+        <div className="Sudoku__row">{renderCellRow(4)}</div>
+        <div className="Sudoku__row">{renderCellRow(5)}</div>
+        <div className="Sudoku__row">{renderCellRow(6)}</div>
+        <div className="Sudoku__row">{renderCellRow(7)}</div>
+        <div className="Sudoku__row">{renderCellRow(8)}</div>
       </div>
     </div>
   );
