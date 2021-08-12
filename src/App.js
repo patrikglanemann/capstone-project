@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
+  let selectedCell = [0, 0];
 
   useEffect(() => {
     let url = "https://sugoku.herokuapp.com/board?difficulty=easy";
@@ -18,7 +19,7 @@ function App() {
 
   function renderCellRow(index) {
     const numbArray = numbers[index].map((number, index) => {
-      return <Cell key={index} value={number} />;
+      return <Cell key={index} value={number} onClick={handleCellClick} />;
     });
     return numbArray;
   }
@@ -32,6 +33,10 @@ function App() {
       />
     ));
     return numbBtns;
+  }
+
+  function handleCellClick() {
+    console.log(selectedCell + " clicked");
   }
 
   function handleNumberInputClick(value) {
