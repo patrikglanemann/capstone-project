@@ -1,6 +1,6 @@
-export default function Cell({ value, onClick }) {
+export default function Cell({ value, onClick, id }) {
   function handleOnClick() {
-    onClick();
+    onClick(id);
   }
 
   return <button onClick={handleOnClick}>{value}</button>;

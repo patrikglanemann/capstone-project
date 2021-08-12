@@ -17,9 +17,16 @@ function App() {
       });
   }, []);
 
-  function renderCellRow(index) {
-    const numbArray = numbers[index].map((number, index) => {
-      return <Cell key={index} value={number} onClick={handleCellClick} />;
+  function renderCellRow(rowNumber) {
+    const numbArray = numbers[rowNumber].map((number, index) => {
+      return (
+        <Cell
+          key={index}
+          value={number}
+          id={[rowNumber, index]}
+          onClick={handleCellClick}
+        />
+      );
     });
     return numbArray;
   }
@@ -35,8 +42,9 @@ function App() {
     return numbBtns;
   }
 
-  function handleCellClick() {
-    console.log(selectedCell + " clicked");
+  function handleCellClick(cellID) {
+    console.log(cellID);
+    selectedCell = cellID;
   }
 
   function handleNumberInputClick(value) {
