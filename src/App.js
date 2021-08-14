@@ -2,39 +2,53 @@ import "./App.css";
 import Cell from "./Cell.js";
 import NumberInput from "./NumberInput";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
-  let selectedCell = [0, 0];
+  const [isLoading, setIsLoading] = useState(false);
+  let selectedCell = [];
 
   useEffect(() => {
     let url = "https://sugoku.herokuapp.com/board?difficulty=easy";
-
+    setIsLoading(true);
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
         setNumbers(data.board);
+        localStorage.setItem("currentSudoku", JSON.stringify(data.board));
+        setIsLoading(false);
       });
   }, []);
 
   function renderCellRow(rowNumber) {
-    const numbArray = numbers[rowNumber].map((number, index) => {
-      return (
-        <Cell
-          key={index}
-          value={number}
-          id={[rowNumber, index]}
-          onClick={handleCellClick}
-        />
-      );
-    });
-    return numbArray;
+    if (isLoading || !numbers) {
+      return <p>Loading...</p>;
+    } else {
+      let mask = JSON.parse(localStorage.getItem("currentSudoku"));
+      const numbArray = numbers[rowNumber].map((number, columnNumber) => {
+        let editable = true;
+        if (mask[rowNumber][columnNumber] !== 0) {
+          editable = false;
+        }
+        return (
+          <Cell
+            key={uuidv4()}
+            value={number}
+            id={[rowNumber, columnNumber]}
+            isEditable={editable}
+            onClick={handleCellClick}
+          />
+        );
+      });
+      return numbArray;
+    }
   }
 
   function renderNumberBtns() {
     const numbBtns = [...Array(9)].map((item, index) => (
       <NumberInput
-        key={index}
+        key={uuidv4()}
         onClick={handleNumberInputClick}
         value={index + 1}
       />
@@ -47,9 +61,11 @@ function App() {
   }
 
   function handleNumberInputClick(value) {
-    let newNumbArr = [...numbers];
-    newNumbArr[selectedCell[0]][selectedCell[1]] = value;
-    setNumbers(newNumbArr);
+    if (selectedCell.length === 2) {
+      let newNumbArr = [...numbers];
+      newNumbArr[selectedCell[0]][selectedCell[1]] = value;
+      setNumbers(newNumbArr);
+    }
   }
 
   return (
