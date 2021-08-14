@@ -5,38 +5,48 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
+  const [isLoading, setIsLoading] = useState(false);
   let selectedCell = [];
 
   useEffect(() => {
     let url = "https://sugoku.herokuapp.com/board?difficulty=easy";
-
+    setIsLoading(true);
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
         setNumbers(data.board);
         localStorage.setItem("currentSudoku", JSON.stringify(data.board));
+        setIsLoading(false);
       });
   }, []);
 
   function renderCellRow(rowNumber) {
-    let mask = JSON.parse(localStorage.getItem("currentSudoku"));
-    console.log("mask: " + mask);
-    const numbArray = numbers[rowNumber].map((number, columnNumber) => {
-      let editable = true;
-      if (mask[rowNumber][columnNumber] !== 0) {
-        editable = false;
-      }
+    if (isLoading || numbers === null || numbers === undefined) {
       return (
-        <Cell
-          key={columnNumber}
-          value={number}
-          id={[rowNumber, columnNumber]}
-          isEditable={editable}
-          onClick={handleCellClick}
-        />
+        <>
+          <p>Loading...</p>
+        </>
       );
-    });
-    return numbArray;
+    } else {
+      let mask = JSON.parse(localStorage.getItem("currentSudoku"));
+      console.log("mask: " + mask);
+      const numbArray = numbers[rowNumber].map((number, columnNumber) => {
+        let editable = true;
+        if (mask[rowNumber][columnNumber] !== 0) {
+          editable = false;
+        }
+        return (
+          <Cell
+            key={columnNumber}
+            value={number}
+            id={[rowNumber, columnNumber]}
+            isEditable={editable}
+            onClick={handleCellClick}
+          />
+        );
+      });
+      return numbArray;
+    }
   }
 
   function renderNumberBtns() {
