@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
-  let selectedCell = [0, 0];
+  let selectedCell = [];
 
   useEffect(() => {
     let url = "https://sugoku.herokuapp.com/board?difficulty=easy";
@@ -47,9 +47,11 @@ function App() {
   }
 
   function handleNumberInputClick(value) {
-    let newNumbArr = [...numbers];
-    newNumbArr[selectedCell[0]][selectedCell[1]] = value;
-    setNumbers(newNumbArr);
+    if (selectedCell.length === 2) {
+      let newNumbArr = [...numbers];
+      newNumbArr[selectedCell[0]][selectedCell[1]] = value;
+      setNumbers(newNumbArr);
+    }
   }
 
   return (
