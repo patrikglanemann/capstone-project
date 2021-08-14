@@ -14,16 +14,19 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => {
         setNumbers(data.board);
+        localStorage.setItem("currentSudoku", JSON.stringify(data.board));
       });
   }, []);
 
   function renderCellRow(rowNumber) {
-    const numbArray = numbers[rowNumber].map((number, index) => {
+    let mask = JSON.parse(localStorage.getItem("currentSudoku"));
+    console.log("mask: " + mask);
+    const numbArray = numbers[rowNumber].map((number, columnNumber) => {
       return (
         <Cell
-          key={index}
+          key={columnNumber}
           value={number}
-          id={[rowNumber, index]}
+          id={[rowNumber, columnNumber]}
           onClick={handleCellClick}
         />
       );
