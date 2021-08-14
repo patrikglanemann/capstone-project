@@ -2,6 +2,7 @@ import "./App.css";
 import Cell from "./Cell.js";
 import NumberInput from "./NumberInput";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
@@ -37,7 +38,7 @@ function App() {
         }
         return (
           <Cell
-            key={columnNumber}
+            key={uuidv4()}
             value={number}
             id={[rowNumber, columnNumber]}
             isEditable={editable}
@@ -52,7 +53,7 @@ function App() {
   function renderNumberBtns() {
     const numbBtns = [...Array(9)].map((item, index) => (
       <NumberInput
-        key={index}
+        key={uuidv4()}
         onClick={handleNumberInputClick}
         value={index + 1}
       />
