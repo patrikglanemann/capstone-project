@@ -22,15 +22,10 @@ function App() {
   }, []);
 
   function renderCellRow(rowNumber) {
-    if (isLoading || numbers === null || numbers === undefined) {
-      return (
-        <>
-          <p>Loading...</p>
-        </>
-      );
+    if (isLoading || !numbers) {
+      return <p>Loading...</p>;
     } else {
       let mask = JSON.parse(localStorage.getItem("currentSudoku"));
-      console.log("mask: " + mask);
       const numbArray = numbers[rowNumber].map((number, columnNumber) => {
         let editable = true;
         if (mask[rowNumber][columnNumber] !== 0) {
