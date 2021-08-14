@@ -22,11 +22,16 @@ function App() {
     let mask = JSON.parse(localStorage.getItem("currentSudoku"));
     console.log("mask: " + mask);
     const numbArray = numbers[rowNumber].map((number, columnNumber) => {
+      let editable = true;
+      if (mask[rowNumber][columnNumber] !== 0) {
+        editable = false;
+      }
       return (
         <Cell
           key={columnNumber}
           value={number}
           id={[rowNumber, columnNumber]}
+          isEditable={editable}
           onClick={handleCellClick}
         />
       );
