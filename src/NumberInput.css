@@ -15,3 +15,16 @@
   box-sizing: border-box;
   border-radius: 30px;
 }
+
+.NumbInputField__btn {
+  font-size: 2em;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  transition-duration: 0.2s;
+}
+
+.NumbInputField__btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

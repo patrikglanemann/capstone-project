@@ -5,5 +5,9 @@ export default function NumberInput({ onClick, value }) {
     onClick(value);
   }
 
-  return <button onClick={handleBtnClick}>{value}</button>;
+  return (
+    <button className="NumbInputField__btn" onClick={handleBtnClick}>
+      {value}
+    </button>
+  );
 }
