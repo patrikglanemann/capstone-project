@@ -1,3 +1,30 @@
 .NumbInputField {
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
   margin-top: 20px;
+  padding: 0.5em 1.5em;
+
+  width: 95vw;
+  max-width: 360px;
+  height: 100px;
+
+  background: linear-gradient(300.63deg, #412027 45.56%, #562736 85.31%);
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.NumbInputField__btn {
+  font-size: 2em;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  transition-duration: 0.2s;
+}
+
+.NumbInputField__btn:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
