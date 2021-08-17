@@ -5,13 +5,15 @@ import SudokuPage from "./pages/SudokuPage.js";
 export default function App() {
   return (
     <Router>
-      <main className="Content">
-        <Switch>
-          <Route path="/">
-            <SudokuPage />
-          </Route>
-        </Switch>
-      </main>
+      <div className="App">
+        <main className="Content">
+          <Switch>
+            <Route path="/">
+              <SudokuPage />
+            </Route>
+          </Switch>
+        </main>
+      </div>
     </Router>
   );
 }

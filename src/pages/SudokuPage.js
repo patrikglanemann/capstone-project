@@ -68,7 +68,7 @@ export default function SudokuPage() {
   }
 
   return (
-    <div className="App">
+    <>
       <div className="Sudoku__grid">
         <div className="Sudoku__row">{renderCellRow(0)}</div>
         <div className="Sudoku__row">{renderCellRow(1)}</div>
@@ -81,6 +81,6 @@ export default function SudokuPage() {
         <div className="Sudoku__row">{renderCellRow(8)}</div>
       </div>
       <div className="NumbInputField">{renderNumberBtns()}</div>
-    </div>
+    </>
   );
 }
