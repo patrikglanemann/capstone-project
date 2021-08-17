@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function SudokuPage() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sudokuStatus, setSudokuStatus] = useState("unsolved");
   let selectedCell = [];
 
   useEffect(() => {
@@ -67,6 +68,35 @@ export default function SudokuPage() {
     }
   }
 
+  function handleSubmitClick() {
+    const encodeBoard = (board) =>
+      board.reduce(
+        (result, row, i) =>
+          result +
+          `%5B${encodeURIComponent(row)}%5D${
+            i === board.length - 1 ? "" : "%2C"
+          }`,
+        ""
+      );
+
+    const encodeParams = (params) =>
+      Object.keys(params)
+        .map((key) => key + "=" + `%5B${encodeBoard(params[key])}%5D`)
+        .join("&");
+    const data = {
+      board: numbers,
+    };
+
+    fetch("https://sugoku.herokuapp.com/validate", {
+      method: "POST",
+      body: encodeParams(data),
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    })
+      .then((response) => response.json())
+      .then((response) => setSudokuStatus(response.status))
+      .catch(console.warn);
+  }
+
   return (
     <>
       <div className="Sudoku__grid">
@@ -81,6 +111,10 @@ export default function SudokuPage() {
         <div className="Sudoku__row">{renderCellRow(8)}</div>
       </div>
       <div className="NumbInputField">{renderNumberBtns()}</div>
+      <button className="SubmitBtn" onClick={handleSubmitClick}>
+        Submit
+      </button>
+      <p>{sudokuStatus}</p>
     </>
   );
 }
