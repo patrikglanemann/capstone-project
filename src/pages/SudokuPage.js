@@ -1,3 +1,4 @@
+import "./SudokuPage.css";
 import Cell from "../components/Cell.js";
 import NumberInput from "../components/NumberInput";
 import { useEffect, useState } from "react";
