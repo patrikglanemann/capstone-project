@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 export default function SudokuGrid({
   initialSudokuNumbers,
   currentSudokuNumbers,
-  onClick,
+  onCellClick,
 }) {
   function handleCellClick(cellID) {
-    onClick(cellID);
+    onCellClick(cellID);
   }
 
   return (
@@ -16,7 +16,7 @@ export default function SudokuGrid({
         <Row
           key={uuidv4()}
           mask={initialSudokuNumbers}
-          onClick={handleCellClick}
+          onCellInRowClick={handleCellClick}
           currentSudokuNumbers={currentSudokuNumbers}
           rowNumber={rowNumber}
         />

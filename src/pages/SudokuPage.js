@@ -72,7 +72,7 @@ export default function SudokuPage() {
             localStorage.getItem("currentSudoku")
           )}
           currentSudokuNumbers={numbers}
-          onClick={handleCellClick}
+          onCellClick={handleCellClick}
         />
       )}
       <NumberInputField onNumberInputClick={handleNumberInputClick} />

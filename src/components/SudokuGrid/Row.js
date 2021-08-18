@@ -5,12 +5,8 @@ export default function Row({
   currentSudokuNumbers,
   rowNumber,
   mask,
-  onClick,
+  onCellInRowClick,
 }) {
-  function handleCellClick(cellID) {
-    onClick(cellID);
-  }
-
   return (
     <div className="Sudoku__row">
       {currentSudokuNumbers[rowNumber].map((number, columnNumber) => {
@@ -24,7 +20,7 @@ export default function Row({
             value={number}
             id={[rowNumber, columnNumber]}
             isEditable={editable}
-            onClick={handleCellClick}
+            onCellClick={onCellInRowClick}
           />
         );
       })}
