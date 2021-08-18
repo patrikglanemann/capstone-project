@@ -1,6 +1,7 @@
 import "./SudokuPage.css";
 import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
+import ValidateBtn from "../components/ValidateBtn.js";
 import { useEffect, useState } from "react";
 
 export default function SudokuPage() {
@@ -33,33 +34,8 @@ export default function SudokuPage() {
     }
   }
 
-  function handleSubmitClick() {
-    const encodeBoard = (board) =>
-      board.reduce(
-        (result, row, i) =>
-          result +
-          `%5B${encodeURIComponent(row)}%5D${
-            i === board.length - 1 ? "" : "%2C"
-          }`,
-        ""
-      );
-
-    const encodeParams = (params) =>
-      Object.keys(params)
-        .map((key) => key + "=" + `%5B${encodeBoard(params[key])}%5D`)
-        .join("&");
-    const data = {
-      board: numbers,
-    };
-
-    fetch("https://sugoku.herokuapp.com/validate", {
-      method: "POST",
-      body: encodeParams(data),
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    })
-      .then((response) => response.json())
-      .then((response) => setSudokuStatus(response.status))
-      .catch(console.warn);
+  function handleSubmitClick(status) {
+    setSudokuStatus(status);
   }
 
   return (
@@ -76,9 +52,12 @@ export default function SudokuPage() {
         />
       )}
       <NumberInputField onNumberInputClick={handleNumberInputClick} />
-      <button className="SubmitBtn" onClick={handleSubmitClick}>
-        Submit
-      </button>
+      <ValidateBtn
+        value={"Submit"}
+        onClick={handleSubmitClick}
+        numbersArray={numbers}
+        url={"https://sugoku.herokuapp.com/validate"}
+      />
       <p>{sudokuStatus}</p>
     </>
   );
