@@ -1,8 +1,7 @@
 import "./SudokuPage.css";
-import Cell from "../components/Cell.js";
+import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export default function SudokuPage() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
@@ -21,30 +20,6 @@ export default function SudokuPage() {
         setIsLoading(false);
       });
   }, []);
-
-  function renderCellRow(rowNumber) {
-    if (isLoading || !numbers) {
-      return <p>Loading...</p>;
-    } else {
-      let mask = JSON.parse(localStorage.getItem("currentSudoku"));
-      const numbArray = numbers[rowNumber].map((number, columnNumber) => {
-        let editable = true;
-        if (mask[rowNumber][columnNumber] !== 0) {
-          editable = false;
-        }
-        return (
-          <Cell
-            key={uuidv4()}
-            value={number}
-            id={[rowNumber, columnNumber]}
-            isEditable={editable}
-            onClick={handleCellClick}
-          />
-        );
-      });
-      return numbArray;
-    }
-  }
 
   function handleCellClick(cellID) {
     selectedCell = cellID;
@@ -89,17 +64,17 @@ export default function SudokuPage() {
 
   return (
     <>
-      <div className="Sudoku__grid">
-        <div className="Sudoku__row">{renderCellRow(0)}</div>
-        <div className="Sudoku__row">{renderCellRow(1)}</div>
-        <div className="Sudoku__row">{renderCellRow(2)}</div>
-        <div className="Sudoku__row">{renderCellRow(3)}</div>
-        <div className="Sudoku__row">{renderCellRow(4)}</div>
-        <div className="Sudoku__row">{renderCellRow(5)}</div>
-        <div className="Sudoku__row">{renderCellRow(6)}</div>
-        <div className="Sudoku__row">{renderCellRow(7)}</div>
-        <div className="Sudoku__row">{renderCellRow(8)}</div>
-      </div>
+      {isLoading || !numbers ? (
+        <p>Loading...</p>
+      ) : (
+        <SudokuGrid
+          initialSudokuNumbers={JSON.parse(
+            localStorage.getItem("currentSudoku")
+          )}
+          currentSudokuNumbers={numbers}
+          onClick={handleCellClick}
+        />
+      )}
       <NumberInputField onNumberInputClick={handleNumberInputClick} />
       <button className="SubmitBtn" onClick={handleSubmitClick}>
         Submit
