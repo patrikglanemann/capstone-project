@@ -10,16 +10,16 @@ export default function Row({
   return (
     <div className="Sudoku__row">
       {currentSudokuNumbers[rowNumber].map((number, columnNumber) => {
-        let editable = true;
+        let isEditable = true;
         if (mask[rowNumber][columnNumber] !== 0) {
-          editable = false;
+          isEditable = false;
         }
         return (
           <Cell
             key={uuidv4()}
             value={number}
             id={[rowNumber, columnNumber]}
-            isEditable={editable}
+            isEditable={isEditable}
             onCellClick={onCellInRowClick}
           />
         );

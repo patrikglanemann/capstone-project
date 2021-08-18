@@ -18,6 +18,7 @@ export default function usePostFetch(url, numbersArray) {
       Object.keys(params)
         .map((key) => key + "=" + `%5B${encodeBoard(params[key])}%5D`)
         .join("&");
+
     const data = {
       board: numbersArray,
     };
