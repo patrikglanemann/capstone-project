@@ -1,6 +1,6 @@
 import "./SudokuPage.css";
 import Cell from "../components/Cell.js";
-import NumberInput from "../components/NumberInput";
+import NumberInputField from "../components/NumberInputField.js";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -44,17 +44,6 @@ export default function SudokuPage() {
       });
       return numbArray;
     }
-  }
-
-  function renderNumberBtns() {
-    const numbBtns = [...Array(9)].map((item, index) => (
-      <NumberInput
-        key={uuidv4()}
-        onClick={handleNumberInputClick}
-        value={index + 1}
-      />
-    ));
-    return numbBtns;
   }
 
   function handleCellClick(cellID) {
@@ -111,7 +100,7 @@ export default function SudokuPage() {
         <div className="Sudoku__row">{renderCellRow(7)}</div>
         <div className="Sudoku__row">{renderCellRow(8)}</div>
       </div>
-      <div className="NumbInputField">{renderNumberBtns()}</div>
+      <NumberInputField onNumberInputClick={handleNumberInputClick} />
       <button className="SubmitBtn" onClick={handleSubmitClick}>
         Submit
       </button>
