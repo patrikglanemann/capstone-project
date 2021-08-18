@@ -6,17 +6,13 @@ export default function SudokuGrid({
   currentSudokuNumbers,
   onCellClick,
 }) {
-  function handleCellClick(cellID) {
-    onCellClick(cellID);
-  }
-
   return (
     <div className="Sudoku__grid">
       {[...Array(9)].map((item, rowNumber) => (
         <Row
           key={uuidv4()}
           mask={initialSudokuNumbers}
-          onCellInRowClick={handleCellClick}
+          onCellInRowClick={onCellClick}
           currentSudokuNumbers={currentSudokuNumbers}
           rowNumber={rowNumber}
         />
