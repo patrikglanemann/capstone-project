@@ -31,9 +31,9 @@ export default function SudokuPage() {
 
   function handleNumberInputClick(value) {
     if (selectedCell.length === 2) {
-      let newNumbArr = [...sudoku];
-      newNumbArr[selectedCell[0]][selectedCell[1]] = value;
-      setSudoku(newNumbArr);
+      let newSudoku = [...sudoku];
+      newSudoku[selectedCell[0]][selectedCell[1]] = value;
+      setSudoku(newSudoku);
     }
   }
 
