@@ -1,5 +1,4 @@
 import Row from "./Row.js";
-import { v4 as uuidv4 } from "uuid";
 
 export default function SudokuGrid({
   initialSudokuNumbers,
@@ -10,7 +9,7 @@ export default function SudokuGrid({
     <div className="Sudoku__grid">
       {[...Array(9)].map((item, rowNumber) => (
         <Row
-          key={uuidv4()}
+          key={rowNumber}
           mask={initialSudokuNumbers}
           onCellInRowClick={onCellClick}
           currentSudokuNumbers={currentSudokuNumbers}
