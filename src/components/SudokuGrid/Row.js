@@ -1,5 +1,4 @@
 import Cell from "./Cell";
-import { v4 as uuidv4 } from "uuid";
 
 export default function Row({
   currentSudokuNumbers,
@@ -13,7 +12,7 @@ export default function Row({
         const isEditable = mask[rowNumber][columnNumber] !== 0 ? false : true;
         return (
           <Cell
-            key={uuidv4()}
+            key={`${rowNumber}-${columnNumber}`}
             value={number}
             id={[rowNumber, columnNumber]}
             isEditable={isEditable}
