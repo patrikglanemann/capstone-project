@@ -7,12 +7,12 @@ export default function SudokuGrid({
 }) {
   return (
     <div className="Sudoku__grid">
-      {[...Array(9)].map((item, rowNumber) => (
+      {currentSudoku.map((row, rowNumber) => (
         <Row
           key={rowNumber}
           mask={initialSudoku}
           onCellInRowClick={onCellClick}
-          currentSudokuNumbers={currentSudoku}
+          rowData={row}
           rowNumber={rowNumber}
         />
       ))}

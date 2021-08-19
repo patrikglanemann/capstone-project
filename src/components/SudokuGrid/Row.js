@@ -1,19 +1,14 @@
 import Cell from "./Cell";
 
-export default function Row({
-  currentSudoku,
-  rowNumber,
-  mask,
-  onCellInRowClick,
-}) {
+export default function Row({ rowData, rowNumber, mask, onCellInRowClick }) {
   return (
     <div className="Sudoku__row">
-      {currentSudoku[rowNumber].map((number, columnNumber) => {
+      {rowData.map((cell, columnNumber) => {
         const isEditable = mask[rowNumber][columnNumber] !== 0 ? false : true;
         return (
           <Cell
             key={`${rowNumber}-${columnNumber}`}
-            value={number}
+            value={cell}
             id={[rowNumber, columnNumber]}
             isEditable={isEditable}
             onCellClick={onCellInRowClick}
