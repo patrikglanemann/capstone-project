@@ -1,20 +1,14 @@
 import Cell from "./Cell";
-import { v4 as uuidv4 } from "uuid";
 
-export default function Row({
-  currentSudokuNumbers,
-  rowNumber,
-  mask,
-  onCellInRowClick,
-}) {
+export default function Row({ rowData, rowNumber, rowMask, onCellInRowClick }) {
   return (
-    <div className="Sudoku__row">
-      {currentSudokuNumbers[rowNumber].map((number, columnNumber) => {
-        const isEditable = mask[rowNumber][columnNumber] !== 0 ? false : true;
+    <div className="Row">
+      {rowData.map((cell, columnNumber) => {
+        const isEditable = rowMask[columnNumber] === 0;
         return (
           <Cell
-            key={uuidv4()}
-            value={number}
+            key={`${rowNumber}-${columnNumber}`}
+            value={cell}
             id={[rowNumber, columnNumber]}
             isEditable={isEditable}
             onCellClick={onCellInRowClick}

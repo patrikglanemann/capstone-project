@@ -1,11 +1,13 @@
 import "./SudokuPage.css";
 import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
-import ValidateBtn from "../components/ValidateBtn.js";
-import { useEffect, useState } from "react";
+import SubmitBtn from "../components/SubmitBtn.js";
+import cloneMatrix from "../utility/cloneMatrix.js";
+import { useEffect, useState, useRef } from "react";
 
 export default function SudokuPage() {
-  const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
+  const [sudoku, setSudoku] = useState(Array(9).fill([]));
+  let initialSudoku = useRef(Array(9).fill([]));
   const [isLoading, setIsLoading] = useState(false);
   const [sudokuStatus, setSudokuStatus] = useState("unsolved");
   let selectedCell = [];
@@ -16,9 +18,12 @@ export default function SudokuPage() {
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        setNumbers(data.board);
-        localStorage.setItem("currentSudoku", JSON.stringify(data.board));
+        setSudoku([...data.board]);
+        initialSudoku.current = cloneMatrix(data.board);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.warn(error);
       });
   }, []);
 
@@ -28,9 +33,9 @@ export default function SudokuPage() {
 
   function handleNumberInputClick(value) {
     if (selectedCell.length === 2) {
-      let newNumbArr = [...numbers];
-      newNumbArr[selectedCell[0]][selectedCell[1]] = value;
-      setNumbers(newNumbArr);
+      let newSudoku = [...sudoku];
+      newSudoku[selectedCell[0]][selectedCell[1]] = value;
+      setSudoku(newSudoku);
     }
   }
 
@@ -40,25 +45,23 @@ export default function SudokuPage() {
 
   return (
     <>
-      {isLoading || !numbers ? (
+      {isLoading || !sudoku ? (
         <p>Loading...</p>
       ) : (
         <SudokuGrid
-          initialSudokuNumbers={JSON.parse(
-            localStorage.getItem("currentSudoku")
-          )}
-          currentSudokuNumbers={numbers}
+          initialSudoku={initialSudoku.current}
+          currentSudoku={sudoku}
           onCellClick={handleCellClick}
         />
       )}
       <NumberInputField onNumberInputClick={handleNumberInputClick} />
-      <ValidateBtn
+      <SubmitBtn
         value={"Submit"}
         onClick={handleSubmitClick}
-        numbersArray={numbers}
+        validateData={sudoku}
         url={"https://sugoku.herokuapp.com/validate"}
       />
-      <p>{sudokuStatus}</p>
+      <h4>{sudokuStatus}</h4>
     </>
   );
 }
