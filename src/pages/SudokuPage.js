@@ -1,8 +1,8 @@
 import "./SudokuPage.css";
-import Cell from "../components/Cell.js";
-import NumberInput from "../components/NumberInput";
+import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
+import NumberInputField from "../components/NumberInputField.js";
+import ValidateBtn from "../components/ValidateBtn.js";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export default function SudokuPage() {
   const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
@@ -22,41 +22,6 @@ export default function SudokuPage() {
       });
   }, []);
 
-  function renderCellRow(rowNumber) {
-    if (isLoading || !numbers) {
-      return <p>Loading...</p>;
-    } else {
-      let mask = JSON.parse(localStorage.getItem("currentSudoku"));
-      const numbArray = numbers[rowNumber].map((number, columnNumber) => {
-        let editable = true;
-        if (mask[rowNumber][columnNumber] !== 0) {
-          editable = false;
-        }
-        return (
-          <Cell
-            key={uuidv4()}
-            value={number}
-            id={[rowNumber, columnNumber]}
-            isEditable={editable}
-            onClick={handleCellClick}
-          />
-        );
-      });
-      return numbArray;
-    }
-  }
-
-  function renderNumberBtns() {
-    const numbBtns = [...Array(9)].map((item, index) => (
-      <NumberInput
-        key={uuidv4()}
-        onClick={handleNumberInputClick}
-        value={index + 1}
-      />
-    ));
-    return numbBtns;
-  }
-
   function handleCellClick(cellID) {
     selectedCell = cellID;
   }
@@ -69,52 +34,30 @@ export default function SudokuPage() {
     }
   }
 
-  function handleSubmitClick() {
-    const encodeBoard = (board) =>
-      board.reduce(
-        (result, row, i) =>
-          result +
-          `%5B${encodeURIComponent(row)}%5D${
-            i === board.length - 1 ? "" : "%2C"
-          }`,
-        ""
-      );
-
-    const encodeParams = (params) =>
-      Object.keys(params)
-        .map((key) => key + "=" + `%5B${encodeBoard(params[key])}%5D`)
-        .join("&");
-    const data = {
-      board: numbers,
-    };
-
-    fetch("https://sugoku.herokuapp.com/validate", {
-      method: "POST",
-      body: encodeParams(data),
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    })
-      .then((response) => response.json())
-      .then((response) => setSudokuStatus(response.status))
-      .catch(console.warn);
+  function handleSubmitClick(status) {
+    setSudokuStatus(status);
   }
 
   return (
     <>
-      <div className="Sudoku__grid">
-        <div className="Sudoku__row">{renderCellRow(0)}</div>
-        <div className="Sudoku__row">{renderCellRow(1)}</div>
-        <div className="Sudoku__row">{renderCellRow(2)}</div>
-        <div className="Sudoku__row">{renderCellRow(3)}</div>
-        <div className="Sudoku__row">{renderCellRow(4)}</div>
-        <div className="Sudoku__row">{renderCellRow(5)}</div>
-        <div className="Sudoku__row">{renderCellRow(6)}</div>
-        <div className="Sudoku__row">{renderCellRow(7)}</div>
-        <div className="Sudoku__row">{renderCellRow(8)}</div>
-      </div>
-      <div className="NumbInputField">{renderNumberBtns()}</div>
-      <button className="SubmitBtn" onClick={handleSubmitClick}>
-        Submit
-      </button>
+      {isLoading || !numbers ? (
+        <p>Loading...</p>
+      ) : (
+        <SudokuGrid
+          initialSudokuNumbers={JSON.parse(
+            localStorage.getItem("currentSudoku")
+          )}
+          currentSudokuNumbers={numbers}
+          onCellClick={handleCellClick}
+        />
+      )}
+      <NumberInputField onNumberInputClick={handleNumberInputClick} />
+      <ValidateBtn
+        value={"Submit"}
+        onClick={handleSubmitClick}
+        numbersArray={numbers}
+        url={"https://sugoku.herokuapp.com/validate"}
+      />
       <p>{sudokuStatus}</p>
     </>
   );
