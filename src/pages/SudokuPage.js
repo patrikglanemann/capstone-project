@@ -2,10 +2,12 @@ import "./SudokuPage.css";
 import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
 import ValidateBtn from "../components/ValidateBtn.js";
-import { useEffect, useState } from "react";
+import cloneMatrix from "../utility/cloneMatrix.js";
+import { useEffect, useState, useRef } from "react";
 
 export default function SudokuPage() {
-  const [numbers, setNumbers] = useState([[], [], [], [], [], [], [], [], []]);
+  const [numbers, setNumbers] = useState(Array(9).fill([]));
+  const initialNumbers = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [sudokuStatus, setSudokuStatus] = useState("unsolved");
   let selectedCell = [];
@@ -16,8 +18,9 @@ export default function SudokuPage() {
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        setNumbers(data.board);
-        localStorage.setItem("currentSudoku", JSON.stringify(data.board));
+        setNumbers([...data.board]);
+        initialNumbers.current = cloneMatrix(data.board);
+
         setIsLoading(false);
       });
   }, []);
@@ -44,9 +47,7 @@ export default function SudokuPage() {
         <p>Loading...</p>
       ) : (
         <SudokuGrid
-          initialSudokuNumbers={JSON.parse(
-            localStorage.getItem("currentSudoku")
-          )}
+          initialSudokuNumbers={initialNumbers.current}
           currentSudokuNumbers={numbers}
           onCellClick={handleCellClick}
         />
