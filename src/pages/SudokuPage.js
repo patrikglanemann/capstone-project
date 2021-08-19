@@ -47,8 +47,8 @@ export default function SudokuPage() {
         <p>Loading...</p>
       ) : (
         <SudokuGrid
-          initialSudokuNumbers={initialSudoku.current}
-          currentSudokuNumbers={sudoku}
+          initialSudoku={initialSudoku.current}
+          currentSudoku={sudoku}
           onCellClick={handleCellClick}
         />
       )}
