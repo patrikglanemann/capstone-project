@@ -10,7 +10,7 @@ export default function SudokuGrid({
       {currentSudoku.map((row, rowNumber) => (
         <Row
           key={rowNumber}
-          mask={initialSudoku}
+          rowMask={initialSudoku[rowNumber]}
           onCellInRowClick={onCellClick}
           rowData={row}
           rowNumber={rowNumber}

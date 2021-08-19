@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 
 export default function SudokuPage() {
   const [sudoku, setSudoku] = useState(Array(9).fill([]));
-  const initialSudoku = useRef();
+  let initialSudoku = useRef(Array(9).fill([]));
   const [isLoading, setIsLoading] = useState(false);
   const [sudokuStatus, setSudokuStatus] = useState("unsolved");
   let selectedCell = [];
