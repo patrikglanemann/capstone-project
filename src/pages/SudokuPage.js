@@ -20,8 +20,10 @@ export default function SudokuPage() {
       .then((data) => {
         setSudoku([...data.board]);
         initialSudoku.current = cloneMatrix(data.board);
-
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.warn(error);
       });
   }, []);
 
