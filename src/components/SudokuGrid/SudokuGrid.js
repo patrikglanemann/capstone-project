@@ -6,7 +6,7 @@ export default function SudokuGrid({
   onCellClick,
 }) {
   return (
-    <div className="Sudoku__grid">
+    <div className="SudokuGrid">
       {currentSudoku.map((row, rowNumber) => (
         <Row
           key={rowNumber}

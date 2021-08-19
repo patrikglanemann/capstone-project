@@ -1,6 +1,6 @@
 import usePostFetch from "../hooks/usePostFetch";
 
-export default function ValidateBtn({ value, onClick, validateData, url }) {
+export default function SubmitBtn({ value, onClick, validateData, url }) {
   const response = usePostFetch(url, validateData);
 
   function handleSubmitClick() {

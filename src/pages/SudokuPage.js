@@ -1,7 +1,7 @@
 import "./SudokuPage.css";
 import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
-import ValidateBtn from "../components/ValidateBtn.js";
+import SubmitBtn from "../components/SubmitBtn.js";
 import cloneMatrix from "../utility/cloneMatrix.js";
 import { useEffect, useState, useRef } from "react";
 
@@ -55,13 +55,13 @@ export default function SudokuPage() {
         />
       )}
       <NumberInputField onNumberInputClick={handleNumberInputClick} />
-      <ValidateBtn
+      <SubmitBtn
         value={"Submit"}
         onClick={handleSubmitClick}
         validateData={sudoku}
         url={"https://sugoku.herokuapp.com/validate"}
       />
-      <p>{sudokuStatus}</p>
+      <h4>{sudokuStatus}</h4>
     </>
   );
 }

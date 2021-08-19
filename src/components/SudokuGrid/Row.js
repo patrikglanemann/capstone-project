@@ -2,7 +2,7 @@ import Cell from "./Cell";
 
 export default function Row({ rowData, rowNumber, rowMask, onCellInRowClick }) {
   return (
-    <div className="Sudoku__row">
+    <div className="Row">
       {rowData.map((cell, columnNumber) => {
         const isEditable = rowMask[columnNumber] === 0;
         return (
