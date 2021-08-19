@@ -1,8 +1,8 @@
 import Row from "./Row.js";
 
 export default function SudokuGrid({
-  initialSudokuNumbers,
-  currentSudokuNumbers,
+  initialSudoku,
+  currentSudoku,
   onCellClick,
 }) {
   return (
@@ -10,9 +10,9 @@ export default function SudokuGrid({
       {[...Array(9)].map((item, rowNumber) => (
         <Row
           key={rowNumber}
-          mask={initialSudokuNumbers}
+          mask={initialSudoku}
           onCellInRowClick={onCellClick}
-          currentSudokuNumbers={currentSudokuNumbers}
+          currentSudokuNumbers={currentSudoku}
           rowNumber={rowNumber}
         />
       ))}
