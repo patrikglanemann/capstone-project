@@ -1,5 +1,9 @@
-.App {
+.App > div {
   text-align: center;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: auto auto 80px;
+  height: 100vh;
 }
 
 .Content {
