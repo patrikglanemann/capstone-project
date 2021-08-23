@@ -44,7 +44,7 @@ export default function SudokuPage() {
   }
 
   return (
-    <>
+    <div className="SudokuPage">
       {isLoading || !sudoku ? (
         <p>Loading...</p>
       ) : (
@@ -62,6 +62,6 @@ export default function SudokuPage() {
         url={"https://sugoku.herokuapp.com/validate"}
       />
       <h4>{sudokuStatus}</h4>
-    </>
+    </div>
   );
 }
