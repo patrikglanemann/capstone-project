@@ -1,3 +1,4 @@
+import "./MainPage.css";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as ProfileIcon } from "../svg/profile-fill.svg";
 import { ReactComponent as HighscoreIcon } from "../svg/chart-fill.svg";
