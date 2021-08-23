@@ -20,6 +20,11 @@ export default function MainPage() {
         </nav>
       </header>
       <main>Main Page</main>
+      <footer>
+        <NavLink to="/sudoku">
+          <button className="Footer__Btn">Start</button>
+        </NavLink>
+      </footer>
     </div>
   );
 }
