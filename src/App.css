@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.App__gridLayout {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: auto auto 80px;
+  height: 100vh;
+}
+
 .Content {
   display: flex;
   flex-direction: column;
