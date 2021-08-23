@@ -44,7 +44,7 @@ export default function SudokuPage() {
   }
 
   return (
-    <div className="SudokuPage">
+    <div className="SudokuPage App__gridLayout">
       {isLoading || !sudoku ? (
         <p>Loading...</p>
       ) : (

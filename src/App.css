@@ -1,5 +1,8 @@
-.App > div {
+.App {
   text-align: center;
+}
+
+.App__gridLayout {
   display: grid;
   justify-content: center;
   grid-template-rows: auto auto 80px;

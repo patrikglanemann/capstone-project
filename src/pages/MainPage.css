@@ -1,4 +1,4 @@
-header {
+.Header {
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
@@ -16,12 +16,12 @@ header {
   border-radius: 30px;
 }
 
-.Header__NavBar {
+.Header__navBar {
   align-self: flex-end;
   margin-right: 2rem;
 }
 
-.Header__NavBar > * {
+.Header__navBar > * {
   margin: 0 5px;
 }
 
@@ -29,7 +29,7 @@ footer {
   height: 100%;
 }
 
-.Footer__Btn {
+.Footer__btn {
   background: #f0c350;
   border: 2px solid #eab049;
   height: 30px;
