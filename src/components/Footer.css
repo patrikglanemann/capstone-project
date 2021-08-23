@@ -1,0 +1,15 @@
+footer {
+  height: 100%;
+}
+
+.Footer_NavBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Footer__Btn {
+  background: #f0c350;
+  border: 2px solid #eab049;
+  height: 30px;
+  width: 70px;
+}

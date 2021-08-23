@@ -1,0 +1,65 @@
+.SudokuGrid {
+  border: 10px solid #4f2531;
+  border-radius: 10px;
+}
+
+.Row {
+  min-width: 360px;
+}
+
+.Cell {
+  background: white;
+  color: #344861;
+  border: 1px solid lightsteelblue;
+  aspect-ratio: 1;
+  width: 40px;
+  font-size: 1.8em;
+}
+
+.Cell--locked {
+  background: lightgray;
+}
+.Cell--active {
+  background: slategrey;
+}
+
+.CellRow0 {
+  border-top: none;
+}
+
+.CellRow2 {
+  border-bottom: 2px solid #344861;
+}
+.CellRow3 {
+  border-top: 2px solid #344861;
+}
+
+.CellRow5 {
+  border-bottom: 2px solid #344861;
+}
+.CellRow6 {
+  border-top: 2px solid #344861;
+}
+
+.CellRow8 {
+  border-bottom: none;
+}
+
+.CellColumn0 {
+  border-left: none;
+}
+.CellColumn2 {
+  border-right: 2px solid #344861;
+}
+.CellColumn3 {
+  border-left: 2px solid #344861;
+}
+.CellColumn5 {
+  border-right: 2px solid #344861;
+}
+.CellColumn6 {
+  border-left: 2px solid #344861;
+}
+.CellColumn8 {
+  border-right: none;
+}

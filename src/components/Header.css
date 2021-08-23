@@ -1,0 +1,55 @@
+header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  width: 95vw;
+  min-width: 280px;
+  color: white;
+}
+
+.Header__topImage {
+  height: 65px;
+
+  background: linear-gradient(300.63deg, #412027 45.56%, #562736 85.31%);
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.Header__NavBar {
+  display: none;
+  align-self: flex-end;
+  margin-right: 2rem;
+}
+
+.Header__NavBar > * {
+  margin: 0 5px;
+}
+
+.Header__NavBar--active {
+  display: unset;
+}
+
+.OptionsNav {
+  visibility: hidden;
+  margin: 0;
+  right: 0;
+  position: absolute;
+  width: 180px;
+  height: 0;
+  background: darkgrey;
+  transition-duration: 0.2s;
+}
+
+.OptionsNav--active {
+  visibility: unset;
+  height: 300px;
+  transition-duration: 0.2s;
+}
+
+@media screen and (max-width: 480px) {
+  .OptionsNav {
+    left: 50vw;
+    width: unset;
+  }
+}
