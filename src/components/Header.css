@@ -27,15 +27,10 @@
 }
 
 .Header__NavBar {
-  display: none;
   align-self: flex-end;
   margin-right: 2rem;
 }
 
 .Header__NavBar > * {
   margin: 0 5px;
-}
-
-.Header__NavBar--active {
-  display: unset;
 }
