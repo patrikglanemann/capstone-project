@@ -1,0 +1,36 @@
+.Footer__navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.Footer__btn {
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  height: 50px;
+  width: 120px;
+  text-align-last: left;
+  font-size: 1.5rem;
+  color: var(--color-font-primary);
+  padding-top: 0.5em;
+}
+
+.Footer__btn--left {
+  background: url(../svg/btn-left.svg);
+  padding-left: 1.3em;
+}
+
+.Footer__btn--right {
+  background: url(../svg/btn-right.svg);
+  padding-left: 1.4em;
+}
+
+.SubmitBtn,
+.Footer__backBtn {
+  background: var(--color-bg-secondary);
+  border: 2px solid var(--color-border-secondary);
+  height: 30px;
+  width: 70px;
+}
