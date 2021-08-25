@@ -45,6 +45,12 @@ export default function SudokuPage() {
 
   return (
     <div className="SudokuPage App__gridLayout">
+      <header className="Header">
+        <div className="Header__topImage">
+          <h1 className="Header__title">Room01</h1>
+          <h2 className="Header__subTitle">easy</h2>
+        </div>
+      </header>
       <main className="Content">
         {isLoading || !sudoku ? (
           <p>Loading...</p>
