@@ -6,13 +6,32 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-bg-primary: #42454a;
+  --color-bg-secondary: #f0c350;
+  --color-border-primary: #000000;
+  --color-border-secondary: #eab049;
+  --color-input-hover: rgba(255, 255, 255, 0.5);
+  --color-primary-gradient-start: #412027;
+  --color-primary-gradient-end: #562736;
+  --color-font-primary: #ffffff;
+  /*Colours for Sudoku grid*/
+  --color-border-grid: #4f2531;
+  --color-bg-cell: #ffffff;
+  --color-bg-cell-locked: lightgray;
+  --color-bg-cell-active: slategrey;
+  --color-font-cell: #344861;
+  --color-border-primary-cell: lightsteelblue;
+  --color-border-secondary-cell: #344861;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #42454a;
+  background: var(--color-bg-primary);
 }
 
 code {
