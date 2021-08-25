@@ -18,7 +18,7 @@ export default function Row({
         return (
           <Cell
             key={`${rowNumber}-${columnNumber}`}
-            value={cell}
+            value={cell === 0 ? "" : cell}
             id={[rowNumber, columnNumber]}
             isEditable={isEditable}
             onCellClick={onCellInRowClick}
