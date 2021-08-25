@@ -10,15 +10,15 @@ export default function SudokuPage() {
   let initialSudoku = useRef(Array(9).fill([]));
   const [isLoading, setIsLoading] = useState(false);
   const [sudokuStatus, setSudokuStatus] = useState("unsolved");
-  let selectedCell = [];
+  const [selectedCell, setSelectedCell] = useState([]);
 
   useEffect(() => {
-    let url = "https://sugoku.herokuapp.com/board?difficulty=easy";
+    const url = "https://sugoku.herokuapp.com/board?difficulty=easy";
     setIsLoading(true);
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        setSudoku([...data.board]);
+        setSudoku(data.board);
         initialSudoku.current = cloneMatrix(data.board);
         setIsLoading(false);
       })
@@ -28,7 +28,7 @@ export default function SudokuPage() {
   }, []);
 
   function handleCellClick(cellID) {
-    selectedCell = cellID;
+    setSelectedCell(cellID);
   }
 
   function handleNumberInputClick(value) {
@@ -45,23 +45,25 @@ export default function SudokuPage() {
 
   return (
     <div className="SudokuPage App__gridLayout">
-      {isLoading || !sudoku ? (
-        <p>Loading...</p>
-      ) : (
-        <SudokuGrid
-          initialSudoku={initialSudoku.current}
-          currentSudoku={sudoku}
-          onCellClick={handleCellClick}
+      <main className="Content">
+        {isLoading || !sudoku ? (
+          <p>Loading...</p>
+        ) : (
+          <SudokuGrid
+            initialSudoku={initialSudoku.current}
+            currentSudoku={sudoku}
+            onCellClick={handleCellClick}
+          />
+        )}
+        <NumberInputField onNumberInputClick={handleNumberInputClick} />
+        <SubmitBtn
+          value={"Submit"}
+          onClick={handleSubmitClick}
+          validateData={sudoku}
+          url={"https://sugoku.herokuapp.com/validate"}
         />
-      )}
-      <NumberInputField onNumberInputClick={handleNumberInputClick} />
-      <SubmitBtn
-        value={"Submit"}
-        onClick={handleSubmitClick}
-        validateData={sudoku}
-        url={"https://sugoku.herokuapp.com/validate"}
-      />
-      <h4>{sudokuStatus}</h4>
+        <h4>{sudokuStatus}</h4>
+      </main>
     </div>
   );
 }
