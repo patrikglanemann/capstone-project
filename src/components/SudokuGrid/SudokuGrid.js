@@ -1,3 +1,4 @@
+import "./SudokuGrid.css";
 import Row from "./Row.js";
 
 export default function SudokuGrid({
