@@ -1,24 +1,12 @@
 import "./MainPage.css";
+import Header from "../components/Header.js";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as ProfileIcon } from "../svg/profile-fill.svg";
-import { ReactComponent as HighscoreIcon } from "../svg/chart-fill.svg";
-import { ReactComponent as OptionsIcon } from "../svg/gear-fill.svg";
 
 export default function MainPage() {
   return (
     <div className="MainPage App__gridLayout">
-      <header className="Header">
-        <div className="Header__topImage">
-          <h1>Main</h1>
-        </div>
-        <nav className="Header__navBar">
-          <ProfileIcon />
-          <NavLink to="/highscores">
-            <HighscoreIcon />
-          </NavLink>
-          <OptionsIcon />
-        </nav>
-      </header>
+      <Header title="Main" type="1" />
+
       <main>Main Page</main>
       <footer className="Footer">
         <NavLink to="/sudoku">
