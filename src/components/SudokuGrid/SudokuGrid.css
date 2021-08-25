@@ -1,5 +1,5 @@
 .SudokuGrid {
-  border: 10px solid #4f2531;
+  border: 10px solid var(--color-border-grid);
   border-radius: 10px;
 }
 
@@ -11,19 +11,19 @@
 }
 
 .Cell {
-  background: white;
-  color: #344861;
-  border: 1px solid lightsteelblue;
+  background: var(--color-bg-cell);
+  color: var(--color-font-cell);
+  border: 1px solid var(--color-border-primary-cell);
   aspect-ratio: 1;
   width: 40px;
   font-size: 1.8em;
 }
 
 .Cell--locked {
-  background: lightgray;
+  background: var(--color-bg-cell-locked);
 }
 .Cell--active {
-  background: slategrey;
+  background: var(--color-bg-cell-active);
 }
 
 .CellRow0 {
@@ -31,17 +31,17 @@
 }
 
 .CellRow2 {
-  border-bottom: 2px solid #344861;
+  border-bottom: 2px solid var(--color-border-secondary-cell);
 }
 .CellRow3 {
-  border-top: 2px solid #344861;
+  border-top: 2px solid var(--color-border-secondary-cell);
 }
 
 .CellRow5 {
-  border-bottom: 2px solid #344861;
+  border-bottom: 2px solid var(--color-border-secondary-cell);
 }
 .CellRow6 {
-  border-top: 2px solid #344861;
+  border-top: 2px solid var(--color-border-secondary-cell);
 }
 
 .CellRow8 {
@@ -52,16 +52,16 @@
   border-left: none;
 }
 .CellColumn2 {
-  border-right: 2px solid #344861;
+  border-right: 2px solid var(--color-border-secondary-cell);
 }
 .CellColumn3 {
-  border-left: 2px solid #344861;
+  border-left: 2px solid var(--color-border-secondary-cell);
 }
 .CellColumn5 {
-  border-right: 2px solid #344861;
+  border-right: 2px solid var(--color-border-secondary-cell);
 }
 .CellColumn6 {
-  border-left: 2px solid #344861;
+  border-left: 2px solid var(--color-border-secondary-cell);
 }
 .CellColumn8 {
   border-right: none;
