@@ -1,9 +1,7 @@
-import "./SudokuPage.css";
 import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
 import SubmitBtn from "../components/SubmitBtn.js";
 import cloneMatrix from "../utility/cloneMatrix.js";
-import { NavLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
 export default function SudokuPage() {
@@ -45,39 +43,27 @@ export default function SudokuPage() {
   }
 
   return (
-    <div className="SudokuPage App__gridLayout">
-      <header className="Header">
-        <div className="Header__topImage">
-          <h1 className="Header__title">Room01</h1>
-          <h2 className="Header__subTitle">easy</h2>
-        </div>
-      </header>
-      <main className="Content">
-        {isLoading || !sudoku ? (
-          <p>Loading...</p>
-        ) : (
-          <SudokuGrid
-            initialSudoku={initialSudoku.current}
-            currentSudoku={sudoku}
-            onCellClick={handleCellClick}
-            activeCellID={selectedCell}
-          />
-        )}
-        <NumberInputField onNumberInputClick={handleNumberInputClick} />
-
-        <h4>{sudokuStatus}</h4>
-      </main>
-      <footer className="Footer">
-        <NavLink to="/">
-          <button className="Footer__backBtn">Back</button>
-        </NavLink>
-        <SubmitBtn
-          value={"Submit"}
-          onClick={handleSubmitClick}
-          validateData={sudoku}
-          url={"https://sugoku.herokuapp.com/validate"}
+    <main className="SudokuPage Content">
+      {isLoading || !sudoku ? (
+        <p>Loading...</p>
+      ) : (
+        <SudokuGrid
+          initialSudoku={initialSudoku.current}
+          currentSudoku={sudoku}
+          onCellClick={handleCellClick}
+          activeCellID={selectedCell}
         />
-      </footer>
-    </div>
+      )}
+      <NumberInputField onNumberInputClick={handleNumberInputClick} />
+
+      <h4>{sudokuStatus}</h4>
+
+      <SubmitBtn
+        value={"Submit"}
+        onClick={handleSubmitClick}
+        validateData={sudoku}
+        url={"https://sugoku.herokuapp.com/validate"}
+      />
+    </main>
   );
 }

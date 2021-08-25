@@ -1,7 +1,0 @@
-.SubmitBtn,
-.Footer__backBtn {
-  background: var(--color-bg-secondary);
-  border: 2px solid var(--color-border-secondary);
-  height: 30px;
-  width: 70px;
-}

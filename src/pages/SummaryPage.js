@@ -1,7 +1,3 @@
 export default function SummaryPage() {
-  return (
-    <div className="SummaryPage App__gridLayout">
-      <main>Summary</main>
-    </div>
-  );
+  return <main className="SummaryPage Content">Summary</main>;
 }
