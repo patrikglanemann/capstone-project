@@ -1,6 +1,13 @@
 import Cell from "./Cell";
+import isCellSelected from "../../utility/isCellSelected";
 
-export default function Row({ rowData, rowNumber, rowMask, onCellInRowClick }) {
+export default function Row({
+  rowData,
+  rowNumber,
+  rowMask,
+  onCellInRowClick,
+  activeCellID,
+}) {
   return (
     <div className="Row">
       {rowData.map((cell, columnNumber) => {
@@ -8,10 +15,11 @@ export default function Row({ rowData, rowNumber, rowMask, onCellInRowClick }) {
         return (
           <Cell
             key={`${rowNumber}-${columnNumber}`}
-            value={cell}
+            value={cell !== 0 && cell}
             id={[rowNumber, columnNumber]}
             isEditable={isEditable}
             onCellClick={onCellInRowClick}
+            isSelected={isCellSelected(activeCellID, rowNumber, columnNumber)}
           />
         );
       })}

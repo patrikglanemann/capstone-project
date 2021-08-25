@@ -1,3 +1,7 @@
-.SubmitBtn {
-  margin-top: 1.5rem;
+.SubmitBtn,
+.Footer__backBtn {
+  background: #f0c350;
+  border: 2px solid #eab049;
+  height: 30px;
+  width: 70px;
 }
