@@ -26,11 +26,11 @@
   line-height: 1;
 }
 
-.Header__NavBar {
+.Header__navBar {
   align-self: flex-end;
   margin-right: 2rem;
 }
 
-.Header__NavBar > * {
+.Header__navBar > * {
   margin: 0 5px;
 }
