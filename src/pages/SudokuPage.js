@@ -59,6 +59,7 @@ export default function SudokuPage() {
             initialSudoku={initialSudoku.current}
             currentSudoku={sudoku}
             onCellClick={handleCellClick}
+            activeCellID={selectedCell}
           />
         )}
         <NumberInputField onNumberInputClick={handleNumberInputClick} />
