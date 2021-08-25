@@ -1,4 +1,5 @@
 import Cell from "./Cell";
+import isCellSelected from "../../utility/isCellSelected";
 
 export default function Row({
   rowData,
@@ -11,18 +12,14 @@ export default function Row({
     <div className="Row">
       {rowData.map((cell, columnNumber) => {
         const isEditable = rowMask[columnNumber] === 0;
-        const isSelected =
-          activeCellID.length === 2 &&
-          rowNumber === activeCellID[0] &&
-          columnNumber === activeCellID[1];
         return (
           <Cell
             key={`${rowNumber}-${columnNumber}`}
-            value={cell === 0 ? "" : cell}
+            value={cell !== 0 && cell}
             id={[rowNumber, columnNumber]}
             isEditable={isEditable}
             onCellClick={onCellInRowClick}
-            isSelected={isSelected}
+            isSelected={isCellSelected(activeCellID, rowNumber, columnNumber)}
           />
         );
       })}

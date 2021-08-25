@@ -1,3 +1,5 @@
+import getCellClassNames from "../../utility/getCellClassNames.js";
+
 export default function Cell({
   value,
   onCellClick,
@@ -11,9 +13,7 @@ export default function Cell({
 
   return (
     <button
-      className={`Cell ${isEditable ? "" : "Cell--locked"} ${
-        isSelected ? "Cell--active" : ""
-      } ${`CellRow${id[0]}`} ${`CellColumn${id[1]}`}`}
+      className={getCellClassNames(isEditable, isSelected, id)}
       onClick={handleClick}
       disabled={isEditable ? false : true}
     >
