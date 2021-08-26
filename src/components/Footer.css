@@ -6,8 +6,7 @@
 }
 
 .Footer__btn {
-  background-repeat: no-repeat;
-  background-size: contain;
+  cursor: pointer;
   border: none;
   height: 50px;
   width: 120px;
