@@ -1,7 +1,3 @@
 export default function MapPage() {
-  return (
-    <div className="MapPage App__gridLayout">
-      <main>Map</main>
-    </div>
-  );
+  return <main className="MapPage Content">Map</main>;
 }

@@ -1,0 +1,63 @@
+.Footer__navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.Footer__btn {
+  cursor: pointer;
+  border: none;
+  height: 50px;
+  width: 120px;
+  text-align-last: left;
+  font-size: 1.5rem;
+  color: var(--color-font-primary);
+  padding-top: 0.5em;
+}
+
+.Footer__btn--left {
+  background: url(../svg/btn-left.svg);
+  padding-left: 1.3em;
+}
+
+.Footer__btn--right {
+  background: url(../svg/btn-right.svg);
+  padding-left: 1.4em;
+}
+
+.SubmitBtn {
+  background: var(--color-bg-secondary);
+  border: 2px solid var(--color-border-secondary);
+  height: 30px;
+  width: 70px;
+}
+
+.Footer__topImage {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 2em;
+  margin-bottom: 2.5rem;
+  width: 100%;
+  height: 100px;
+
+  background: linear-gradient(
+    300.63deg,
+    var(--color-primary-gradient-start) 45.56%,
+    var(--color-primary-gradient-end) 85.31%
+  );
+  border: 2px solid var(--color-border-primary);
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.StartBtn {
+  background: url(../svg/btn-start.svg);
+  width: 240px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  text-align-last: unset;
+  padding: unset;
+}
