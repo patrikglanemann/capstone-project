@@ -8,7 +8,7 @@ export default function Footer() {
         <Switch>
           <Route path="/highscore">
             <NavLink to="/">
-              <button className="Footer__btn">Back</button>
+              <button className="Footer__btn Footer__btn--left">Back</button>
             </NavLink>
           </Route>
           <Route path="/map">
