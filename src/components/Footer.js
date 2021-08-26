@@ -1,6 +1,5 @@
 import "./Footer.css";
 import { NavLink, Switch, Route } from "react-router-dom";
-//import { ReactComponent as ButtonIcon } from "../svg/btn-left.svg";
 
 export default function Footer() {
   return (
@@ -34,9 +33,11 @@ export default function Footer() {
             </NavLink>
           </Route>
           <Route path="/">
-            <NavLink to="/map">
-              <button className="Footer__btn">Start</button>
-            </NavLink>
+            <div className="Footer__topImage">
+              <NavLink to="/map">
+                <button className="Footer__btn StartBtn">Start</button>
+              </NavLink>
+            </div>
           </Route>
         </Switch>
       </nav>
