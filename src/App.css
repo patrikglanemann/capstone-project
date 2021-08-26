@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   display: grid;
+  grid-template-rows: auto 1fr auto;
   justify-content: center;
   height: 100vh;
 }

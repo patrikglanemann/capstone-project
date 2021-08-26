@@ -1,0 +1,15 @@
+.highscore__item {
+  list-style: none;
+  width: 90vw;
+  max-width: 360px;
+  margin: 0.5rem 0;
+  color: var(--color-font-primary);
+
+  background: linear-gradient(
+    300.63deg,
+    var(--color-primary-gradient-start) 45.56%,
+    var(--color-primary-gradient-end) 85.31%
+  );
+  border: 2px solid var(--color-border-primary);
+  border-radius: 30px;
+}

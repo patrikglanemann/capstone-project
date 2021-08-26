@@ -17,7 +17,6 @@
     var(--color-primary-gradient-end) 85.31%
   );
   border: 2px solid var(--color-border-primary);
-  box-sizing: border-box;
   border-radius: 30px;
 }
 
