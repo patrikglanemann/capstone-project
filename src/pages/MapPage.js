@@ -1,6 +1,16 @@
 import "./MapPage.css";
+import { useEffect, useRef } from "react";
 
 export default function MapPage() {
+  const roomsDifficulty = useRef(Array(4));
+
+  useEffect(() => {
+    roomsDifficulty.current = [...new Array(4)].map(() =>
+      Math.round(Math.random() * 2)
+    );
+    console.log(roomsDifficulty.current);
+  }, []);
+
   return (
     <main className="MapPage Content">
       <button className="MapPage__arrowBtn MapPage__arrowBtn--up"></button>
