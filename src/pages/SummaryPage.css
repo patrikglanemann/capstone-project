@@ -29,6 +29,9 @@
   font-weight: unset;
 }
 
+h3.Summary__contentBox__score {
+  font-weight: 800;
+}
 .Summary__banner {
   position: absolute;
   background: url(../svg/banner-victory.svg);

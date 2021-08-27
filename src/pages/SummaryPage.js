@@ -13,7 +13,7 @@ export default function SummaryPage() {
           <h3>easy</h3>
         </span>
         <h3>Points + 5</h3>
-        <h3>Score: 85</h3>
+        <h3 className="Summary__contentBox__score">Score: 85</h3>
         <Link to="/map">
           <button className="Summary__doneBtn">Done</button>
         </Link>
