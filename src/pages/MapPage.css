@@ -1,0 +1,41 @@
+.MapPage {
+  margin-top: 5rem;
+}
+
+.MapPage__arrowBtn {
+  cursor: pointer;
+  background: url(../svg/arrow-fill.svg);
+  height: 60px;
+  width: 40px;
+  border: none;
+}
+
+.MapPage__arrowBtn--right {
+  transform: rotate(90deg);
+}
+.MapPage__arrowBtn--down {
+  transform: rotate(180deg);
+}
+.MapPage__arrowBtn--left {
+  transform: rotate(-90deg);
+}
+
+.Room {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50vw;
+  min-width: 160px;
+  max-width: 200px;
+  aspect-ratio: 1;
+  margin: 2rem;
+  border: 10px solid var(--color-border-grid);
+  border-radius: 10px;
+  background: var(--color-bg-cell-locked);
+  color: var(--color-font-cell);
+}
+
+.MapPage__middle {
+  display: flex;
+  align-items: center;
+}
