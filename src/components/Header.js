@@ -18,11 +18,6 @@ export default function Header() {
             <h1 className="Header__title">Map</h1>
           </div>
         </Route>
-        <Route path="/sudoku/summary">
-          <div className="Header__topImage">
-            <h1 className="Header__title">Victory</h1>
-          </div>
-        </Route>
         <Route path="/sudoku">
           <div className="Header__topImage">
             <h1 className="Header__title">Room01</h1>

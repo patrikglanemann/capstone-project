@@ -19,11 +19,7 @@ export default function Footer() {
               <button className="Footer__btn Footer__btn--right">Enter</button>
             </NavLink>
           </Route>
-          <Route path="/sudoku/summary">
-            <NavLink to="/">
-              <button className="Footer__btn Footer__btn--left">Done</button>
-            </NavLink>
-          </Route>
+          <Route path="/sudoku/summary"></Route>
           <Route path="/sudoku">
             <NavLink to="/map">
               <button className="Footer__btn Footer__btn--left">Back</button>
