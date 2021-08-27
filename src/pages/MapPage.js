@@ -1,5 +1,6 @@
 import "./MapPage.css";
 import { useEffect, useRef } from "react";
+import RoomSelectBtn from "../components/RoomSelectBtn";
 
 export default function MapPage() {
   const roomsDifficulty = useRef(Array(4));
@@ -8,14 +9,27 @@ export default function MapPage() {
     roomsDifficulty.current = [...new Array(4)].map(() =>
       Math.round(Math.random() * 2)
     );
-    console.log(roomsDifficulty.current);
   }, []);
+
+  function handleRoomSelectClick(room) {
+    console.log(room);
+  }
 
   return (
     <main className="MapPage Content">
-      <button className="MapPage__arrowBtn MapPage__arrowBtn--up"></button>
+      <RoomSelectBtn
+        btnID={0}
+        btnClass="MapPage__arrowBtn MapPage__arrowBtn--up"
+        onClick={handleRoomSelectClick}
+      />
+
       <div className="MapPage__middle">
-        <button className="MapPage__arrowBtn MapPage__arrowBtn--left"></button>
+        <RoomSelectBtn
+          btnID={3}
+          btnClass="MapPage__arrowBtn MapPage__arrowBtn--left"
+          onClick={handleRoomSelectClick}
+        />
+
         <div className="Room">
           <span>
             <h3>Difficulty:</h3>
@@ -23,9 +37,17 @@ export default function MapPage() {
           </span>
           <h3>Points + 5</h3>
         </div>
-        <button className="MapPage__arrowBtn MapPage__arrowBtn--right"></button>
+        <RoomSelectBtn
+          btnID={1}
+          btnClass="MapPage__arrowBtn MapPage__arrowBtn--right"
+          onClick={handleRoomSelectClick}
+        />
       </div>
-      <button className="MapPage__arrowBtn MapPage__arrowBtn--down"></button>
+      <RoomSelectBtn
+        btnID={2}
+        btnClass="MapPage__arrowBtn MapPage__arrowBtn--down"
+        onClick={handleRoomSelectClick}
+      />
     </main>
   );
 }
