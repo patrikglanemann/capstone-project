@@ -1,18 +1,27 @@
 import "./MapPage.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import RoomSelectBtn from "../components/RoomSelectBtn";
 
 export default function MapPage() {
   const roomsDifficulty = useRef(Array(4));
+  const [difficulty, setDifficulty] = useState("???");
 
   useEffect(() => {
-    roomsDifficulty.current = [...new Array(4)].map(() =>
-      Math.round(Math.random() * 2)
-    );
+    roomsDifficulty.current = [...new Array(4)].map(() => {
+      const newDifficulty = Math.round(Math.random() * 2);
+      if (newDifficulty === 0) {
+        return "easy";
+      } else if (newDifficulty === 1) {
+        return "normal";
+      } else if (newDifficulty === 2) {
+        return "hard";
+      }
+    });
+    console.log(roomsDifficulty.current);
   }, []);
 
   function handleRoomSelectClick(room) {
-    console.log(room);
+    setDifficulty(roomsDifficulty.current[room]);
   }
 
   return (
@@ -22,18 +31,16 @@ export default function MapPage() {
         btnClass="MapPage__arrowBtn MapPage__arrowBtn--up"
         onClick={handleRoomSelectClick}
       />
-
       <div className="MapPage__middle">
         <RoomSelectBtn
           btnID={3}
           btnClass="MapPage__arrowBtn MapPage__arrowBtn--left"
           onClick={handleRoomSelectClick}
         />
-
         <div className="Room">
           <span>
             <h3>Difficulty:</h3>
-            <h3>easy</h3>
+            <h3>{difficulty}</h3>
           </span>
           <h3>Points + 5</h3>
         </div>
