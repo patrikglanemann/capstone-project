@@ -1,0 +1,68 @@
+.SummaryPage {
+  margin-top: 4rem;
+  min-width: 300px;
+}
+
+.Summary__contentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 70vw;
+  max-width: 300px;
+  min-width: 220px;
+  height: 400px;
+  padding-top: 5em;
+  background: linear-gradient(
+    300.63deg,
+    var(--color-primary-gradient-start) 45.56%,
+    var(--color-primary-gradient-end) 85.31%
+  );
+  border: 2px solid var(--color-border-primary);
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.Summary__contentBox h3 {
+  color: var(--color-font-primary);
+  letter-spacing: 0.1em;
+  font-size: 2rem;
+  font-weight: unset;
+}
+
+h3.Summary__contentBox__score {
+  font-weight: 800;
+}
+.Summary__banner {
+  position: absolute;
+  background: url(../svg/banner-victory.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: top;
+  width: 95vw;
+  max-width: 400px;
+  min-width: 300px;
+  aspect-ratio: calc(400 / 123);
+  top: calc(65px + 5rem);
+}
+
+.Summary__title {
+  color: var(--color-font-primary);
+  margin: 0.5rem;
+  letter-spacing: 0.1em;
+  font-size: clamp(2.1rem, 11vw, 3rem);
+  font-weight: 800;
+}
+
+.Summary__doneBtn {
+  cursor: pointer;
+  background: url(../svg/btn-start.svg);
+  background-size: 200px 50px;
+  background-repeat: no-repeat;
+  border: none;
+  color: var(--color-font-primary);
+  height: 50px;
+  width: 200px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+}
