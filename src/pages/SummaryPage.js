@@ -8,8 +8,10 @@ export default function SummaryPage() {
         <h2 className="Summary__title">Victory</h2>
       </div>
       <div className="Summary__contentBox">
-        <h3>Difficulty:</h3>
-        <h3>easy</h3>
+        <span>
+          <h3>Difficulty:</h3>
+          <h3>easy</h3>
+        </span>
         <h3>Points + 5</h3>
         <h3>Score: 85</h3>
         <Link to="/map">

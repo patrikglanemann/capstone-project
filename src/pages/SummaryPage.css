@@ -4,10 +4,14 @@
 }
 
 .Summary__contentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 70vw;
   max-width: 300px;
   min-width: 220px;
   height: 400px;
+  padding-top: 5em;
   background: linear-gradient(
     300.63deg,
     var(--color-primary-gradient-start) 45.56%,
@@ -16,6 +20,13 @@
   border: 2px solid var(--color-border-primary);
   box-sizing: border-box;
   border-radius: 30px;
+}
+
+.Summary__contentBox h3 {
+  color: var(--color-font-primary);
+  letter-spacing: 0.1em;
+  font-size: 2rem;
+  font-weight: unset;
 }
 
 .Summary__banner {
