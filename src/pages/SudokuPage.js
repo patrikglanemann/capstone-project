@@ -12,7 +12,8 @@ export default function SudokuPage() {
   const [selectedCell, setSelectedCell] = useState([]);
 
   useEffect(() => {
-    const url = "https://sugoku.herokuapp.com/board?difficulty=easy";
+    const difficulty = JSON.parse(localStorage.getItem("difficulty"));
+    const url = `https://sugoku.herokuapp.com/board?difficulty=${difficulty}`;
     setIsLoading(true);
     fetch(url)
       .then((resp) => resp.json())
