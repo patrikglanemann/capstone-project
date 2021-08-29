@@ -5,6 +5,7 @@ import RoomSelectBtn from "../components/RoomSelectBtn";
 export default function MapPage() {
   const roomsDifficulty = useRef(Array(4));
   const [difficulty, setDifficulty] = useState("???");
+  const [points, setPoints] = useState("");
 
   useEffect(() => {
     roomsDifficulty.current = [...new Array(4)].map(() => {
@@ -31,6 +32,13 @@ export default function MapPage() {
       console.warn(error);
       alert("There was an error while saving new difficulty");
     }
+    if (roomsDifficulty.current[room] === "easy") {
+      setPoints("Points: 5");
+    } else if (roomsDifficulty.current[room] === "medium") {
+      setPoints("Points: 10");
+    } else if (roomsDifficulty.current[room] === "hard") {
+      setPoints("Points: 20");
+    }
   }
 
   return (
@@ -51,7 +59,7 @@ export default function MapPage() {
             <h3>Difficulty:</h3>
             <h3>{difficulty}</h3>
           </span>
-          <h3>Points + 5</h3>
+          <h3>{points}</h3>
         </div>
         <RoomSelectBtn
           btnID={1}
