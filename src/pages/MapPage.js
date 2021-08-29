@@ -12,7 +12,7 @@ export default function MapPage() {
       if (newDifficulty === 0) {
         return "easy";
       } else if (newDifficulty === 1) {
-        return "normal";
+        return "medium";
       } else if (newDifficulty === 2) {
         return "hard";
       }
@@ -22,6 +22,15 @@ export default function MapPage() {
 
   function handleRoomSelectClick(room) {
     setDifficulty(roomsDifficulty.current[room]);
+    try {
+      localStorage.setItem(
+        "difficulty",
+        JSON.stringify(roomsDifficulty.current[room])
+      );
+    } catch (error) {
+      console.warn(error);
+      alert("There was an error while saving new difficulty");
+    }
   }
 
   return (
