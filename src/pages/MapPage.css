@@ -11,6 +11,11 @@
   border: none;
 }
 
+.MapPage__arrowBtn:focus::before {
+  content: "●";
+  color: var(--color-font-primary);
+}
+
 .MapPage__arrowBtn--up {
   animation: buzz-top ease-in-out 0.5s infinite alternate;
 }
