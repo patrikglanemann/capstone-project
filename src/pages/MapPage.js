@@ -2,7 +2,7 @@ import "./MapPage.css";
 import { useEffect, useRef, useState } from "react";
 import RoomSelectBtn from "../components/RoomSelectBtn";
 
-export default function MapPage() {
+export default function MapPage({ onRoomClick }) {
   const roomsDifficulty = useRef(Array(4));
   const [difficulty, setDifficulty] = useState("???");
   const [points, setPoints] = useState("");
@@ -23,15 +23,6 @@ export default function MapPage() {
 
   function handleRoomSelectClick(room) {
     setDifficulty(roomsDifficulty.current[room]);
-    try {
-      localStorage.setItem(
-        "difficulty",
-        JSON.stringify(roomsDifficulty.current[room])
-      );
-    } catch (error) {
-      console.warn(error);
-      alert("There was an error while saving new difficulty");
-    }
     if (roomsDifficulty.current[room] === "easy") {
       setPoints("Points: 5");
     } else if (roomsDifficulty.current[room] === "medium") {
@@ -39,6 +30,7 @@ export default function MapPage() {
     } else if (roomsDifficulty.current[room] === "hard") {
       setPoints("Points: 20");
     }
+    onRoomClick(roomsDifficulty.current[room]);
   }
 
   return (
