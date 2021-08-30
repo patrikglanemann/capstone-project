@@ -18,7 +18,6 @@ export default function MapPage({ onRoomClick }) {
         return "hard";
       }
     });
-    console.log(roomsDifficulty.current);
   }, []);
 
   function handleRoomSelectClick(room) {
