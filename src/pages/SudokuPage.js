@@ -4,7 +4,7 @@ import SubmitBtn from "../components/SubmitBtn.js";
 import cloneMatrix from "../utility/cloneMatrix.js";
 import { useEffect, useState, useRef } from "react";
 
-export default function SudokuPage() {
+export default function SudokuPage({ sudokuDifficulty }) {
   const [sudoku, setSudoku] = useState(Array(9).fill([]));
   let initialSudoku = useRef(Array(9).fill([]));
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ export default function SudokuPage() {
   const [selectedCell, setSelectedCell] = useState([]);
 
   useEffect(() => {
-    const url = "https://sugoku.herokuapp.com/board?difficulty=easy";
+    const url = `https://sugoku.herokuapp.com/board?difficulty=${sudokuDifficulty}`;
     setIsLoading(true);
     fetch(url)
       .then((resp) => resp.json())
