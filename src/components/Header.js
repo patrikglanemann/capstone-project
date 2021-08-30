@@ -4,7 +4,7 @@ import { ReactComponent as ProfileIcon } from "../svg/profile-fill.svg";
 import { ReactComponent as HighscoreIcon } from "../svg/chart-fill.svg";
 import { ReactComponent as OptionsIcon } from "../svg/gear-fill.svg";
 
-export default function Header() {
+export default function Header({ sudokuDifficulty }) {
   return (
     <header className="Header">
       <Switch>
@@ -21,7 +21,7 @@ export default function Header() {
         <Route path="/sudoku">
           <div className="Header__topImage">
             <h1 className="Header__title">Room01</h1>
-            <h2 className="Header__subTitle">easy</h2>
+            <h2 className="Header__subTitle">{sudokuDifficulty}</h2>
           </div>
         </Route>
         <Route path="/">
