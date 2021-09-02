@@ -1,4 +1,5 @@
 import "./App.css";
+import { useHistory } from "react-router";
 import { Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SudokuPage from "./pages/SudokuPage.js";
@@ -10,6 +11,7 @@ import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 
 export default function App() {
+  const history = useHistory();
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
   const [isRoomSelected, setIsRoomSelected] = useState(false);
 
@@ -38,6 +40,19 @@ export default function App() {
     }
   }
 
+  function handleOnSubmitClick() {
+    const isSubmit = confirm(
+      "Do you want to submit your Sukoku? If it is wrong or not finfished you will be defeated!"
+    );
+    if (isSubmit) {
+      history.push("/sudoku/summary", { from: "SummaryPage" });
+    }
+  }
+
+  function handleDoneClick() {
+    setIsRoomSelected(false);
+  }
+
   return (
     <div className="App">
       <Header sudokuDifficulty={sudokuDifficulty} />
@@ -49,7 +64,7 @@ export default function App() {
           <MapPage onRoomClick={handleRoomClick} />
         </Route>
         <Route path="/sudoku/summary">
-          <SummaryPage />
+          <SummaryPage onDoneClick={handleDoneClick} />
         </Route>
         <Route path="/sudoku">
           <SudokuPage sudokuDifficulty={sudokuDifficulty} />
@@ -60,6 +75,7 @@ export default function App() {
       </Switch>
       <Footer
         onEnterClick={handleOnEnterClick}
+        onSubmitClick={handleOnSubmitClick}
         isRoomSelected={isRoomSelected}
       />
     </div>
