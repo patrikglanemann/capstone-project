@@ -8,6 +8,12 @@ export default function MapPage({ onRoomClick }) {
   const [points, setPoints] = useState("");
 
   useEffect(() => {
+    const currentDifficulty = JSON.parse(
+      localStorage.getItem("currentDifficulty")
+    );
+    if (currentDifficulty) {
+      setDifficulty(currentDifficulty);
+    }
     roomsDifficulty.current = [...new Array(4)].map(() => {
       const newDifficulty = Math.round(Math.random() * 2);
       if (newDifficulty === 0) {
@@ -21,15 +27,30 @@ export default function MapPage({ onRoomClick }) {
   }, []);
 
   function handleRoomSelectClick(room) {
-    setDifficulty(roomsDifficulty.current[room]);
-    if (roomsDifficulty.current[room] === "easy") {
-      setPoints("Points: 5");
-    } else if (roomsDifficulty.current[room] === "medium") {
-      setPoints("Points: 10");
-    } else if (roomsDifficulty.current[room] === "hard") {
-      setPoints("Points: 20");
+    const currentSudoku = JSON.parse(localStorage.getItem("currentSudoku"));
+    if (!currentSudoku) {
+      setDifficulty(roomsDifficulty.current[room]);
+      if (roomsDifficulty.current[room] === "easy") {
+        setPoints("Points: 5");
+      } else if (roomsDifficulty.current[room] === "medium") {
+        setPoints("Points: 10");
+      } else if (roomsDifficulty.current[room] === "hard") {
+        setPoints("Points: 20");
+      }
+      try {
+        localStorage.setItem(
+          "currentDifficulty",
+          JSON.stringify(roomsDifficulty.current[room])
+        );
+      } catch (error) {
+        console.warn(error);
+        alert("There was an error while saving the current difficulty");
+      }
+
+      onRoomClick(roomsDifficulty.current[room]);
+    } else {
+      alert("Game in progress, please enter the room to continue.");
     }
-    onRoomClick(roomsDifficulty.current[room]);
   }
 
   return (
