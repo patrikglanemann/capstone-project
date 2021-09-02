@@ -75,7 +75,12 @@ export default function SudokuPage({ sudokuDifficulty }) {
   return (
     <main className="SudokuPage Content">
       {isLoading || !sudoku ? (
-        <p>Loading...</p>
+        <SudokuGrid
+          initialSudoku={initialSudoku.current}
+          currentSudoku={Array(9).fill([0, 0, 0, 0, 0, 0, 0, 0, 0])}
+          onCellClick={handleCellClick}
+          activeCellID={selectedCell}
+        />
       ) : (
         <SudokuGrid
           initialSudoku={initialSudoku.current}
