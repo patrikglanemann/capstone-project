@@ -49,16 +49,28 @@ export default function SummaryPage() {
 
   return (
     <main className="SummaryPage Content">
-      <div className="Summary__banner">
+      <div
+        className={`Summary__banner ${
+          resultMessage === "Victory"
+            ? "Summary__banner--victory"
+            : "Summary__banner--defeat"
+        }`}
+      >
         <h2 className="Summary__title">{resultMessage}</h2>
       </div>
-      <div className="Summary__contentBox">
+      <div
+        className={`Summary__contentBox ${
+          resultMessage === "Victory"
+            ? "Summary__contentBox--victory"
+            : "Summary__contentBox--defeat"
+        }`}
+      >
         <span>
           <h3>Difficulty:</h3>
           <h3>{sudokuDifficulty}</h3>
         </span>
         <h3>{resultMessage === "Victory" ? `Points: +${points}` : ""}</h3>
-        <h3 className="Summary__contentBox__score">Score: 85</h3>
+        <h3 className="Summary__contentBox__score">Score: 85 </h3>
         <Link to="/map">
           <button className="Summary__doneBtn" onClick={handleDoneClick}>
             Done

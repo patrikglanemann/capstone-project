@@ -2,6 +2,20 @@
   margin-top: 4rem;
   min-width: 300px;
 }
+.Summary__contentBox--victory {
+  background: linear-gradient(
+    300.63deg,
+    var(--color-primary-gradient-start) 45.56%,
+    var(--color-primary-gradient-end) 85.31%
+  );
+}
+.Summary__contentBox--defeat {
+  background: linear-gradient(
+    300.63deg,
+    var(--color-primary-gradient-start-defeat) 45.56%,
+    var(--color-primary-gradient-end-defeat) 85.31%
+  );
+}
 
 .Summary__contentBox {
   display: flex;
@@ -12,11 +26,6 @@
   min-width: 220px;
   height: 400px;
   padding-top: 5em;
-  background: linear-gradient(
-    300.63deg,
-    var(--color-primary-gradient-start) 45.56%,
-    var(--color-primary-gradient-end) 85.31%
-  );
   border: 2px solid var(--color-border-primary);
   box-sizing: border-box;
   border-radius: 30px;
@@ -32,9 +41,16 @@
 h3.Summary__contentBox__score {
   font-weight: 800;
 }
+.Summary__banner--victory {
+  background: url(../svg/banner-victory.svg);
+}
+
+.Summary__banner--defeat {
+  background: url(../svg/banner-defeat.svg);
+}
+
 .Summary__banner {
   position: absolute;
-  background: url(../svg/banner-victory.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: top;
