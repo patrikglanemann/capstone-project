@@ -1,6 +1,5 @@
 import SudokuGrid from "../components/SudokuGrid/SudokuGrid.js";
 import NumberInputField from "../components/NumberInputField.js";
-import SubmitBtn from "../components/SubmitBtn.js";
 import cloneMatrix from "../utility/cloneMatrix.js";
 import { useEffect, useState, useRef } from "react";
 
@@ -8,22 +7,50 @@ export default function SudokuPage({ sudokuDifficulty }) {
   const [sudoku, setSudoku] = useState(Array(9).fill([]));
   let initialSudoku = useRef(Array(9).fill([]));
   const [isLoading, setIsLoading] = useState(false);
-  const [sudokuStatus, setSudokuStatus] = useState("unsolved");
   const [selectedCell, setSelectedCell] = useState([]);
 
   useEffect(() => {
-    const url = `https://sugoku.herokuapp.com/board?difficulty=${sudokuDifficulty}`;
-    setIsLoading(true);
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setSudoku(data.board);
-        initialSudoku.current = cloneMatrix(data.board);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.warn(error);
-      });
+    let currentSudoku = JSON.parse(localStorage.getItem("currentSudoku"));
+    if (!currentSudoku) {
+      const url = `https://sugoku.herokuapp.com/board?difficulty=${sudokuDifficulty}`;
+      setIsLoading(true);
+      fetch(url)
+        .then((resp) => resp.json())
+        .then((data) => {
+          setSudoku(data.board);
+          initialSudoku.current = cloneMatrix(data.board);
+          try {
+            localStorage.setItem(
+              "currentSudoku",
+              JSON.stringify(cloneMatrix(data.board))
+            );
+            localStorage.setItem(
+              "currentInitialSudoku",
+              JSON.stringify(cloneMatrix(data.board))
+            );
+          } catch (error) {
+            console.warn(error);
+            alert("There was an error while saving the current initial Sudoku");
+          }
+
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
+    } else {
+      let currentInitialSudoku = JSON.parse(
+        localStorage.getItem("currentInitialSudoku")
+      );
+      if (!currentInitialSudoku) {
+        alert(
+          "Oh no! Some numbers escaped the Zoodoku. Please start a new game"
+        );
+        currentInitialSudoku = Array(9).fill([]);
+      }
+      setSudoku(currentSudoku);
+      initialSudoku.current = currentInitialSudoku;
+    }
   }, []);
 
   function handleCellClick(cellID) {
@@ -35,17 +62,25 @@ export default function SudokuPage({ sudokuDifficulty }) {
       let newSudoku = [...sudoku];
       newSudoku[selectedCell[0]][selectedCell[1]] = value;
       setSudoku(newSudoku);
-    }
-  }
 
-  function handleSubmitClick(status) {
-    setSudokuStatus(status);
+      try {
+        localStorage.setItem("currentSudoku", JSON.stringify(newSudoku));
+      } catch (error) {
+        console.warn(error);
+        alert("There was an error while saving the current Sudoku");
+      }
+    }
   }
 
   return (
     <main className="SudokuPage Content">
       {isLoading || !sudoku ? (
-        <p>Loading...</p>
+        <SudokuGrid
+          initialSudoku={initialSudoku.current}
+          currentSudoku={Array(9).fill([0, 0, 0, 0, 0, 0, 0, 0, 0])}
+          onCellClick={handleCellClick}
+          activeCellID={selectedCell}
+        />
       ) : (
         <SudokuGrid
           initialSudoku={initialSudoku.current}
@@ -55,15 +90,6 @@ export default function SudokuPage({ sudokuDifficulty }) {
         />
       )}
       <NumberInputField onNumberInputClick={handleNumberInputClick} />
-
-      <h4>{sudokuStatus}</h4>
-
-      <SubmitBtn
-        value={"Submit"}
-        onClick={handleSubmitClick}
-        validateData={sudoku}
-        url={"https://sugoku.herokuapp.com/validate"}
-      />
     </main>
   );
 }

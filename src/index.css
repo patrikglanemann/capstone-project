@@ -14,6 +14,8 @@
   --color-input-hover: rgba(255, 255, 255, 0.5);
   --color-primary-gradient-start: #412027;
   --color-primary-gradient-end: #562736;
+  --color-primary-gradient-start-defeat: #535152;
+  --color-primary-gradient-end-defeat: #7b7b7b;
   --color-font-primary: #ffffff;
   /*Colours for Sudoku grid*/
   --color-border-grid: #4f2531;
