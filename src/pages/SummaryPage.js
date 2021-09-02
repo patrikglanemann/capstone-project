@@ -7,6 +7,7 @@ export default function SummaryPage() {
   const [resultMessage, setResultMessage] = useState("");
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
   const [points, setPoints] = useState("");
+  const [score, setScore] = useState("");
   const currentSudoku = JSON.parse(localStorage.getItem("currentSudoku"));
   const url = "https://sugoku.herokuapp.com/validate";
   const response = usePostFetch(url, currentSudoku);
@@ -34,6 +35,17 @@ export default function SummaryPage() {
     if (!currentScore) {
       currentScore = 0;
     }
+    try {
+      localStorage.setItem(
+        "currentScore",
+        JSON.stringify(currentScore + currentPoints)
+      );
+    } catch (error) {
+      console.log(error);
+      alert("There was an error while saving the current score");
+    }
+
+    setScore(currentScore + currentPoints);
   }, []);
 
   function handleDoneClick() {
@@ -41,6 +53,9 @@ export default function SummaryPage() {
       localStorage.setItem("currentInitialSudoku", JSON.stringify(null));
       localStorage.setItem("currentSudoku", JSON.stringify(null));
       localStorage.setItem("currentDifficulty", JSON.stringify(null));
+      if (resultMessage === "Defeat") {
+        localStorage.setItem("currentScore", JSON.stringify(0));
+      }
     } catch (error) {
       console.log(error);
       alert("There was an error while saving current Url");
@@ -70,7 +85,7 @@ export default function SummaryPage() {
           <h3>{sudokuDifficulty}</h3>
         </span>
         <h3>{resultMessage === "Victory" ? `Points: +${points}` : ""}</h3>
-        <h3 className="Summary__contentBox__score">Score: 85 </h3>
+        <h3 className="Summary__contentBox__score">{`Score: ${score}`} </h3>
         <Link to="/map">
           <button className="Summary__doneBtn" onClick={handleDoneClick}>
             Done
