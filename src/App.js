@@ -1,6 +1,6 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SudokuPage from "./pages/SudokuPage.js";
 import MainPage from "./pages/MainPage.js";
 import MapPage from "./pages/MapPage.js";
@@ -11,7 +11,15 @@ import Footer from "./components/Footer.js";
 
 export default function App() {
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
-
+  useEffect(() => {
+    let currentDifficulty = JSON.parse(
+      localStorage.getItem("currentDifficulty")
+    );
+    if (!currentDifficulty) {
+      currentDifficulty = "???";
+    }
+    setSudokuDifficulty(currentDifficulty);
+  });
   function handleRoomClick(newDifficulty) {
     setSudokuDifficulty(newDifficulty);
   }
