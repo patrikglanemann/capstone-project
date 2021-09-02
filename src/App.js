@@ -11,6 +11,8 @@ import Footer from "./components/Footer.js";
 
 export default function App() {
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
+  const [isRoomSelected, setIsRoomSelected] = useState(false);
+
   useEffect(() => {
     let currentDifficulty = JSON.parse(
       localStorage.getItem("currentDifficulty")
@@ -19,9 +21,21 @@ export default function App() {
       currentDifficulty = "???";
     }
     setSudokuDifficulty(currentDifficulty);
+
+    if (JSON.parse(localStorage.getItem("currentSudoku")) !== null) {
+      setIsRoomSelected(true);
+    }
   });
+
   function handleRoomClick(newDifficulty) {
     setSudokuDifficulty(newDifficulty);
+    setIsRoomSelected(true);
+  }
+
+  function handleOnEnterClick() {
+    if (!isRoomSelected) {
+      alert("Please select a room.");
+    }
   }
 
   return (
@@ -44,7 +58,10 @@ export default function App() {
           <MainPage />
         </Route>
       </Switch>
-      <Footer />
+      <Footer
+        onEnterClick={handleOnEnterClick}
+        isRoomSelected={isRoomSelected}
+      />
     </div>
   );
 }

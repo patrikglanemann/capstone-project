@@ -1,7 +1,11 @@
 import "./Footer.css";
 import { NavLink, Switch, Route } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({ onEnterClick, isRoomSelected }) {
+  function handleEnterClick() {
+    onEnterClick();
+  }
+
   return (
     <footer className="Footer">
       <nav className="Footer__navBar">
@@ -15,8 +19,13 @@ export default function Footer() {
             <NavLink to="/">
               <button className="Footer__btn Footer__btn--left">Back</button>
             </NavLink>
-            <NavLink to="/sudoku">
-              <button className="Footer__btn Footer__btn--right">Enter</button>
+            <NavLink to={isRoomSelected ? "/sudoku" : "/map"}>
+              <button
+                className="Footer__btn Footer__btn--right"
+                onClick={handleEnterClick}
+              >
+                Enter
+              </button>
             </NavLink>
           </Route>
           <Route path="/sudoku/summary"></Route>
@@ -24,9 +33,7 @@ export default function Footer() {
             <NavLink to="/map">
               <button className="Footer__btn Footer__btn--left">Back</button>
             </NavLink>
-            <NavLink to="/sudoku/summary">
-              <button className="Footer__btn Footer__btn--right">Submit</button>
-            </NavLink>
+            <button className="Footer__btn Footer__btn--right">Submit</button>
           </Route>
           <Route path="/">
             <div className="Footer__topImage">
