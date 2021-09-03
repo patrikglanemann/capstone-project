@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import usePostFetch from "../hooks/usePostFetch.js";
 
-export default function SummaryPage() {
+export default function SummaryPage({ onDoneClick }) {
   const [resultMessage, setResultMessage] = useState("");
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
   const [points, setPoints] = useState("");
@@ -41,7 +41,7 @@ export default function SummaryPage() {
         JSON.stringify(currentScore + currentPoints)
       );
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       alert("There was an error while saving the current score");
     }
 
@@ -57,9 +57,10 @@ export default function SummaryPage() {
         localStorage.setItem("currentScore", JSON.stringify(0));
       }
     } catch (error) {
-      console.log(error);
-      alert("There was an error while saving current Url");
+      console.warn(error);
+      alert("There was an error while resetting game session data");
     }
+    onDoneClick();
   }
 
   return (
