@@ -41,7 +41,7 @@ export default function SummaryPage({ onDoneClick }) {
         JSON.stringify(currentScore + currentPoints)
       );
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       alert("There was an error while saving the current score");
     }
 
@@ -57,8 +57,8 @@ export default function SummaryPage({ onDoneClick }) {
         localStorage.setItem("currentScore", JSON.stringify(0));
       }
     } catch (error) {
-      console.log(error);
-      alert("There was an error while saving current Url");
+      console.warn(error);
+      alert("There was an error while resetting game session data");
     }
     onDoneClick();
   }
