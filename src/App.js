@@ -15,6 +15,7 @@ export default function App() {
   const history = useHistory();
   const location = useLocation();
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
+  const [score, setScore] = useState(0);
   const [isRoomSelected, setIsRoomSelected] = useState(false);
   const currentDifficulty =
     JSON.parse(localStorage.getItem("currentDifficulty")) || "???";
@@ -25,6 +26,11 @@ export default function App() {
     if (JSON.parse(localStorage.getItem("currentSudoku"))) {
       setIsRoomSelected(true);
     }
+    let currentScore = JSON.parse(localStorage.getItem("currentScore"));
+    if (!currentScore) {
+      currentScore = 0;
+    }
+    setScore(currentScore);
   });
 
   function handleOnStartClick() {
@@ -68,7 +74,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Header sudokuDifficulty={sudokuDifficulty} />
+      <Header sudokuDifficulty={sudokuDifficulty} score={score} />
       <Switch>
         <Route path="/profile">
           <ProfilePage />
