@@ -14,17 +14,13 @@ export default function App() {
   const history = useHistory();
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
   const [isRoomSelected, setIsRoomSelected] = useState(false);
+  const currentDifficulty =
+    JSON.parse(localStorage.getItem("currentDifficulty")) || "???";
 
   useEffect(() => {
-    let currentDifficulty = JSON.parse(
-      localStorage.getItem("currentDifficulty")
-    );
-    if (!currentDifficulty) {
-      currentDifficulty = "???";
-    }
     setSudokuDifficulty(currentDifficulty);
 
-    if (JSON.parse(localStorage.getItem("currentSudoku")) !== null) {
+    if (JSON.parse(localStorage.getItem("currentSudoku"))) {
       setIsRoomSelected(true);
     }
   });

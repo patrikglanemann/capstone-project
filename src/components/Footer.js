@@ -6,14 +6,6 @@ export default function Footer({
   isRoomSelected,
   onSubmitClick,
 }) {
-  function handleEnterClick() {
-    onEnterClick();
-  }
-
-  function handleSubmitClick() {
-    onSubmitClick();
-  }
-
   return (
     <footer className="Footer">
       <nav className="Footer__navBar">
@@ -30,7 +22,7 @@ export default function Footer({
             <NavLink to={isRoomSelected ? "/sudoku" : "/map"}>
               <button
                 className="Footer__btn Footer__btn--right"
-                onClick={handleEnterClick}
+                onClick={onEnterClick}
               >
                 Enter
               </button>
@@ -43,7 +35,7 @@ export default function Footer({
             </NavLink>
             <button
               className="Footer__btn Footer__btn--right"
-              onClick={handleSubmitClick}
+              onClick={onSubmitClick}
             >
               Submit
             </button>
