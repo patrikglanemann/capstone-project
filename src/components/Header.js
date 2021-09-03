@@ -8,6 +8,11 @@ export default function Header({ sudokuDifficulty }) {
   return (
     <header className="Header">
       <Switch>
+        <Route path="/profile">
+          <div className="Header__topImage">
+            <h1 className="Header__title">Profile</h1>
+          </div>
+        </Route>
         <Route path="/highscore">
           <div className="Header__topImage">
             <h1 className="Header__title">Highscore</h1>

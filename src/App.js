@@ -7,6 +7,7 @@ import MainPage from "./pages/MainPage.js";
 import MapPage from "./pages/MapPage.js";
 import SummaryPage from "./pages/SummaryPage.js";
 import HighscorePage from "./pages/HighscorePage.js";
+import ProfilePage from "./pages/ProfilePage.js";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 
@@ -69,6 +70,9 @@ export default function App() {
     <div className="App">
       <Header sudokuDifficulty={sudokuDifficulty} />
       <Switch>
+        <Route path="/profile">
+          <ProfilePage />
+        </Route>
         <Route path="/highscore">
           <HighscorePage />
         </Route>
