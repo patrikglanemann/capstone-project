@@ -1,0 +1,9 @@
+.MainPage {
+  margin-top: 2rem;
+}
+
+.Logo {
+  width: 95vw;
+  max-width: 360px;
+  min-width: 300px;
+}
