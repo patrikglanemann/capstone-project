@@ -1,5 +1,5 @@
 import "./App.css";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SudokuPage from "./pages/SudokuPage.js";
@@ -12,6 +12,7 @@ import Footer from "./components/Footer.js";
 
 export default function App() {
   const history = useHistory();
+  const location = useLocation();
   const [sudokuDifficulty, setSudokuDifficulty] = useState("");
   const [isRoomSelected, setIsRoomSelected] = useState(false);
   const currentDifficulty =
@@ -30,7 +31,11 @@ export default function App() {
   }
 
   function handleOnBackClick() {
-    history.goBack();
+    if (location.pathname === "/sudoku") {
+      history.push("/map");
+    } else {
+      history.push("/");
+    }
   }
 
   function handleOnEnterClick() {
