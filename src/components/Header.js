@@ -25,8 +25,8 @@ export default function Header({ sudokuDifficulty, score }) {
         </Route>
         <Route path="/sudoku">
           <div className="Header__topImage">
-            <h1 className="Header__title">Room01</h1>
-            <h2 className="Header__subTitle">{sudokuDifficulty}</h2>
+            <h1 className="Header__title">Score: {score}</h1>
+            <h2 className="Header__subTitle">Room: {sudokuDifficulty}</h2>
           </div>
         </Route>
         <Route path="/">
