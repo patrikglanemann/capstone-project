@@ -25,15 +25,21 @@ export default function App() {
     }
   });
 
-  function handleRoomClick(newDifficulty) {
-    setSudokuDifficulty(newDifficulty);
-    setIsRoomSelected(true);
+  function handleOnStartClick() {
+    history.push("/map", { from: "MainPage" });
+  }
+
+  function handleOnBackClick() {
+    history.goBack();
   }
 
   function handleOnEnterClick() {
     if (!isRoomSelected) {
       alert("Please select a room.");
     }
+    history.push(isRoomSelected ? "/sudoku" : "/map", {
+      from: "MapPage",
+    });
   }
 
   function handleOnSubmitClick() {
@@ -47,6 +53,11 @@ export default function App() {
 
   function handleDoneClick() {
     setIsRoomSelected(false);
+  }
+
+  function handleRoomClick(newDifficulty) {
+    setSudokuDifficulty(newDifficulty);
+    setIsRoomSelected(true);
   }
 
   return (
@@ -70,9 +81,10 @@ export default function App() {
         </Route>
       </Switch>
       <Footer
+        onStartClick={handleOnStartClick}
+        onBackClick={handleOnBackClick}
         onEnterClick={handleOnEnterClick}
         onSubmitClick={handleOnSubmitClick}
-        isRoomSelected={isRoomSelected}
       />
     </div>
   );

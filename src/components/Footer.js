@@ -1,38 +1,56 @@
 import "./Footer.css";
-import { NavLink, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 export default function Footer({
   onEnterClick,
-  isRoomSelected,
   onSubmitClick,
+  onBackClick,
+  onStartClick,
 }) {
   return (
     <footer className="Footer">
       <nav className="Footer__navBar">
         <Switch>
+          <Route path="/profile">
+            <button
+              className="Footer__btn Footer__btn--left"
+              onClick={onBackClick}
+            >
+              Back
+            </button>
+            <button className="Footer__btn Footer__btn--right"></button>
+          </Route>
           <Route path="/highscore">
-            <NavLink to="/">
-              <button className="Footer__btn Footer__btn--left">Back</button>
-            </NavLink>
+            <button
+              className="Footer__btn Footer__btn--left"
+              onClick={onBackClick}
+            >
+              Back
+            </button>
+            <button className="Footer__btn Footer__btn--right"></button>
           </Route>
           <Route path="/map">
-            <NavLink to="/">
-              <button className="Footer__btn Footer__btn--left">Back</button>
-            </NavLink>
-            <NavLink to={isRoomSelected ? "/sudoku" : "/map"}>
-              <button
-                className="Footer__btn Footer__btn--right"
-                onClick={onEnterClick}
-              >
-                Enter
-              </button>
-            </NavLink>
+            <button
+              className="Footer__btn Footer__btn--left"
+              onClick={onBackClick}
+            >
+              Back
+            </button>
+            <button
+              className="Footer__btn Footer__btn--right"
+              onClick={onEnterClick}
+            >
+              Enter
+            </button>
           </Route>
           <Route path="/sudoku/summary"></Route>
           <Route path="/sudoku">
-            <NavLink to="/map">
-              <button className="Footer__btn Footer__btn--left">Back</button>
-            </NavLink>
+            <button
+              className="Footer__btn Footer__btn--left"
+              onClick={onBackClick}
+            >
+              Back
+            </button>
             <button
               className="Footer__btn Footer__btn--right"
               onClick={onSubmitClick}
@@ -42,9 +60,9 @@ export default function Footer({
           </Route>
           <Route path="/">
             <div className="Footer__topImage">
-              <NavLink to="/map">
-                <button className="Footer__btn StartBtn">Start</button>
-              </NavLink>
+              <button className="Footer__btn StartBtn" onClick={onStartClick}>
+                Start
+              </button>
             </div>
           </Route>
         </Switch>
