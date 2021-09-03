@@ -1,8 +1,14 @@
+.HighscorePage {
+  overflow-y: scroll;
+}
+
 .highscore__item {
   list-style: none;
   width: 90vw;
   max-width: 360px;
   margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  font-size: 1.5rem;
   color: var(--color-font-primary);
 
   background: linear-gradient(
