@@ -1,17 +1,23 @@
+import { useEffect, useState } from "react";
 import "./HighscorePage.css";
 
 export default function highscorePage() {
-  const highscores = [10, 50, 25, 35, 0, 85, 40];
+  const [highscoreList, setHighscoreList] = useState([]);
+  useEffect(() => {
+    let highscores = [];
+    highscores = JSON.parse(localStorage.getItem("currentHighscores")) || [];
+    setHighscoreList(highscores);
+  }, []);
 
   function renderHighscores() {
-    const highscoreList = highscores.map((highscore, index) => {
+    const newHighscoreList = highscoreList.map((highscore, index) => {
       return (
         <li key={index} className="highscore__item">
           {highscore}
         </li>
       );
     });
-    return highscoreList;
+    return newHighscoreList;
   }
 
   return (
