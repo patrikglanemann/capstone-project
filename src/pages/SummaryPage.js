@@ -13,24 +13,29 @@ export default function SummaryPage({ onDoneClick }) {
   const response = usePostFetch(url, currentSudoku);
 
   useEffect(() => {
-    if (response === "solved") {
-      setResultMessage("Victory");
-    } else {
+    if (response === "unsolved" || response === "broken") {
       setResultMessage("Defeat");
+    } else if (response === "solved") {
+      setResultMessage("Victory");
     }
     const currentDifficulty = JSON.parse(
       localStorage.getItem("currentDifficulty")
     );
     setSudokuDifficulty(currentDifficulty);
+
     let currentPoints = 0;
-    if (currentDifficulty === "easy") {
-      currentPoints = 5;
-    } else if (currentDifficulty === "medium") {
-      currentPoints = 10;
-    } else if (currentDifficulty === "hard") {
-      currentPoints = 20;
+    if (response === "solved") {
+      if (currentDifficulty === "easy") {
+        currentPoints = 5;
+      } else if (currentDifficulty === "medium") {
+        currentPoints = 10;
+      } else if (currentDifficulty === "hard") {
+        currentPoints = 20;
+      }
+    } else {
+      currentPoints = 0;
     }
-    setPoints(`Points: +${currentPoints}`);
+    setPoints(currentPoints);
     let currentScore = JSON.parse(localStorage.getItem("currentScore"));
     if (!currentScore) {
       currentScore = 0;
@@ -46,10 +51,18 @@ export default function SummaryPage({ onDoneClick }) {
     }
 
     setScore(currentScore + currentPoints);
-  }, []);
+  }, [response]);
 
   function handleDoneClick() {
     try {
+      if (response !== "solved") {
+        const newHighscore = score;
+        let highscores = [];
+        highscores =
+          JSON.parse(localStorage.getItem("currentHighscores")) || [];
+        highscores.push(newHighscore);
+        localStorage.setItem("currentHighscores", JSON.stringify(highscores));
+      }
       localStorage.setItem("currentInitialSudoku", JSON.stringify(null));
       localStorage.setItem("currentSudoku", JSON.stringify(null));
       localStorage.setItem("currentDifficulty", JSON.stringify(null));
@@ -86,7 +99,11 @@ export default function SummaryPage({ onDoneClick }) {
           <h3>{sudokuDifficulty}</h3>
         </span>
         <h3>{resultMessage === "Victory" ? `Points: +${points}` : ""}</h3>
-        <h3 className="Summary__contentBox__score">{`Score: ${score}`} </h3>
+        <h3 className="Summary__contentBox__score">
+          {resultMessage === "Victory"
+            ? `Score: ${score}`
+            : `Highscore: ${score}`}{" "}
+        </h3>
         <Link to="/map">
           <button className="Summary__doneBtn" onClick={handleDoneClick}>
             Done
