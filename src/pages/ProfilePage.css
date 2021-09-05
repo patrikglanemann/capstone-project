@@ -1,0 +1,7 @@
+.ProfilePage {
+  margin-top: 5rem;
+}
+
+.ProfilePage__title {
+  color: var(--color-font-primary);
+}

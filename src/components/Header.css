@@ -9,8 +9,10 @@
 }
 
 .Header__topImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 65px;
-
   background: linear-gradient(
     300.63deg,
     var(--color-primary-gradient-start) 45.56%,
