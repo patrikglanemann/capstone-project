@@ -1,3 +1,10 @@
+# Sudokus and Dragons
+
+"Don't slay foes, solve Sudokus."  
+Imagine a game that feels a bit like a dungeon crawler, but each room/floor would be a Sudoku you have to solve.  
+In Sudokus and Dragons you select one of four directions with a random generated difficulty. For each solved Sudoku you earn points, higher difficulty means more points. If you lose, you are defeated and your highscore will be saved in a list.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
